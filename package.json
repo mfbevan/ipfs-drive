@@ -17,6 +17,7 @@
     "@trpc/next": "^10.44.1",
     "@trpc/react-query": "^10.44.1",
     "@trpc/server": "^10.44.1",
+    "daisyui": "^4.4.6",
     "ethers": "^5",
     "next": "14.0.3",
     "nextjs-progressbar": "^0.0.16",
@@ -24,6 +25,7 @@
     "react-dom": "^18",
     "react-toastify": "^9.1.3",
     "superjson": "^2.2.1",
+    "trpc-panel": "^1.3.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {
