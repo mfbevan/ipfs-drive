@@ -5,10 +5,12 @@ import { shortenString, toDateTimeString } from "@/lib";
 
 export interface MessageHistoryItemProps {
   message: DecodedMessage;
+  combine?: boolean;
 }
 
 export const MessageHistoryItem = ({
   message: { senderAddress, content, sent },
+  combine = false,
 }: MessageHistoryItemProps) => {
   const address = useAddress();
   const incoming = senderAddress !== address;
@@ -22,12 +24,20 @@ export const MessageHistoryItem = ({
           </div>
         </div>
       </div>
-      <div className="chat-header">
-        {shortenString(senderAddress)}
-        <time className="text-xs opacity-50">{toDateTimeString(sent)}</time>
-      </div>
+      {!combine && (
+        <div className="chat-header text-base-content">
+          {shortenString(senderAddress)}{" "}
+          <time className="text-xs text-base-content opacity-50">
+            {toDateTimeString(sent)}
+          </time>
+        </div>
+      )}
       <div className="chat-bubble">{content}</div>
-      <div className="chat-footer opacity-50">Delivered</div>
+      {!combine && (
+        <div className="chat-footer text-base-content opacity-50">
+          Delivered
+        </div>
+      )}
     </div>
   );
 };
