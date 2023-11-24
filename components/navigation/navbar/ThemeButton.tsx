@@ -36,17 +36,17 @@ export const ThemeButton = () => {
         className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52"
       >
         {daisyTheme.map((item, index) => (
-            <li key={index}>
-              <input
-                type="radio"
-                name="theme-dropdown"
-                className="theme-controller btn btn-sm btn-block btn-ghost justify-start text-content"
-                aria-label={toSentenceCase(item)}
-                value={item}
-                onChange={(e) => onChangeTheme(e.target.value)}
-              />
-            </li>
-          ))}
+          <li key={index}>
+            <input
+              type="radio"
+              name="theme-dropdown"
+              className="theme-controller btn btn-sm btn-block btn-ghost justify-start text-content"
+              aria-label={toSentenceCase(item)}
+              value={item}
+              onChange={(e) => onChangeTheme(e.target.value)}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );

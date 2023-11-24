@@ -3,9 +3,9 @@ export interface NavigationItem {
   href: string;
 }
 
-export const NavigationItems: NavigationItem[] = [
-  // {
-  //   label: " 💾 ipfs://drive",
-  //   href: "/",
-  // },
+export const navigationItems: NavigationItem[] = [
+  {
+    label: "💬 Messages",
+    href: "/messages",
+  },
 ];
