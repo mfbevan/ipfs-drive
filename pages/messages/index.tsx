@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 
-import { AppLayout, NewConversation } from "@/components";
-import { ConversationList } from "@/components/messaging/conversation-list/ConversationList";
+import { AppLayout, NewConversation, ConversationList } from "@/components";
 import { useConversations } from "@/lib";
 
 const Home: NextPage = () => {

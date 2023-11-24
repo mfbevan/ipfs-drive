@@ -9,11 +9,7 @@ export interface MessageHistoryProps {
 export const MessageHistory = ({ messages }: MessageHistoryProps) => (
   <div className="flex-col">
     {messages.map((message, index) => (
-      <MessageHistoryItem
-        key={index}
-        message={message}
-        incoming={index % 2 === 0}
-      />
+      <MessageHistoryItem key={index} message={message} />
     ))}
   </div>
 );
