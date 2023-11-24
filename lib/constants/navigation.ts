@@ -4,8 +4,8 @@ export interface NavigationItem {
 }
 
 export const NavigationItems: NavigationItem[] = [
-  {
-    label: " 💾 ipfs://drive",
-    href: "/",
-  },
+  // {
+  //   label: " 💾 ipfs://drive",
+  //   href: "/",
+  // },
 ];
