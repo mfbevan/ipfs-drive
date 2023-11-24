@@ -6,9 +6,11 @@ export const StatefulConnectButton = () => (
     style={{ height: "50px" }}
     className="text-base btn btn-primary"
     detailsBtn={() => (
-      <button className="btn btn-square bg-base-100">
-        <FaWallet />
-      </button>
+      <div className="tooltip tooltip-bottom" data-tip="Wallet">
+        <button className="btn btn-square bg-base-100">
+          <FaWallet />
+        </button>
+      </div>
     )}
   />
 );

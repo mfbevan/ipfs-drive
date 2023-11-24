@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ThemeButton } from "./ThemeButton";
+import { ThemeButton } from "../theme";
 
 import { StatefulConnectButton } from "@/components";
 import { navigationItems } from "@/lib";

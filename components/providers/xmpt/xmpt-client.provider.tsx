@@ -32,14 +32,20 @@ export const XmptClientProvider = ({ children }: XmptClientProviderProps) => {
       storeKeys(address, keys);
     }
 
-    return Client.create(null, {
-      ...clientOptions,
-      privateKeyOverride: keys,
-    });
+    return Client.create(null, { ...clientOptions, privateKeyOverride: keys });
   }, [signer]);
 
   useEffect(() => {
-    connect().then(setClient);
+    if (!signer) return;
+    connect()
+      .then(setClient)
+      .then(async () => {
+        const conversation = await client?.conversations.newConversation(
+          "0x937C0d4a6294cdfa575de17382c7076b579DC176"
+        );
+
+        await conversation?.send("Hello World!");
+      });
   }, [connect, signer]);
 
   const value = useMemo(() => ({ client }), [client]);
