@@ -19,7 +19,7 @@ export const ThemeButton = () => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-square bg-base-100">
         <PiPaintBrushBroadDuotone />
       </label>

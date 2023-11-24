@@ -7,16 +7,22 @@ import { AppProps } from "next/app";
 import PageLoader from "nextjs-progressbar";
 import { ToastContainer } from "react-toastify";
 
-import { FeatureProvider, useProviderConfig } from "@/components";
+import {
+  FeatureProvider,
+  XmptClientProvider,
+  useProviderConfig,
+} from "@/components";
 import { trpc } from "@/utils/trpc";
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <FeatureProvider>
     <ThirdwebProvider {...useProviderConfig()}>
       <XMTPProvider>
-        <ToastContainer theme="colored" position="bottom-right" />
-        <PageLoader />
-        <Component {...pageProps} />
+        <XmptClientProvider>
+          <ToastContainer theme="colored" position="bottom-right" />
+          <PageLoader />
+          <Component {...pageProps} />
+        </XmptClientProvider>
       </XMTPProvider>
     </ThirdwebProvider>
   </FeatureProvider>

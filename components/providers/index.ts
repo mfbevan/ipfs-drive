@@ -1,1 +1,2 @@
-export * from "./FeatureProvider";
+export * from "./feature";
+export * from "./xmpt";
