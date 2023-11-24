@@ -1,29 +1,25 @@
-import { NavigationItems } from "@/lib";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import Link from "next/link";
+
 import { ThemeButton } from "./ThemeButton";
 
-export const Navbar = () => {
-  return (
+import { NavigationItems } from "@/lib";
+
+export const Navbar = () => (
     <div className="navbar bg-neutral gap-2 px-2 ">
-      <div className="flex-none text-neutral-content text-xl">
-        💾 ipfs://drive
-      </div>
+      <div className="flex-none text-neutral-content ">💾 ipfs://drive</div>
       <div className="flex-1">
-        {NavigationItems.map((item, index) => {
-          return (
+        {NavigationItems.map((item, index) => (
             <Link key={index} href={item.href} className="btn text-xl">
               {item.label}
             </Link>
-          );
-        })}
+          ))}
       </div>
       <div>
         <ThemeButton />
       </div>
       <div>
-        <ConnectWallet style={{ height: "50px" }} />
+        <ConnectWallet style={{ height: "50px", fontSize: "16px" }} />
       </div>
     </div>
   );
-};

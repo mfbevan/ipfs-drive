@@ -1,5 +1,6 @@
-import { daisyTheme, toSentenceCase } from "@/lib";
 import { useEffect } from "react";
+
+import { daisyTheme, toSentenceCase } from "@/lib";
 
 const THEME_LOCAL_STORAGE_KEY = "daisy-theme";
 
@@ -34,20 +35,18 @@ export const ThemeButton = () => {
         tabIndex={0}
         className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52"
       >
-        {daisyTheme.map((item, index) => {
-          return (
+        {daisyTheme.map((item, index) => (
             <li key={index}>
               <input
                 type="radio"
                 name="theme-dropdown"
-                className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                className="theme-controller btn btn-sm btn-block btn-ghost justify-start text-content"
                 aria-label={toSentenceCase(item)}
                 value={item}
                 onChange={(e) => onChangeTheme(e.target.value)}
               />
             </li>
-          );
-        })}
+          ))}
       </ul>
     </div>
   );

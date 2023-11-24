@@ -1,7 +1,11 @@
-import Image from "next/image";
+import { NextPage } from "next";
 
-export default function Home() {
-  return (
+import { AppLayout } from "@/components";
+
+const Home: NextPage = () => (
+  <AppLayout title="Home">
     <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
-  );
-}
+  </AppLayout>
+);
+
+export default Home;

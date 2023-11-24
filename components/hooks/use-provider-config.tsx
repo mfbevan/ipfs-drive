@@ -8,6 +8,7 @@ import {
   walletConnect,
 } from "@thirdweb-dev/react";
 import { DAppMetaData } from "@thirdweb-dev/wallets";
+
 import {
   generateUrl,
   MAGIC_API_KEY,
