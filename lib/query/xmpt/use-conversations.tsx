@@ -8,7 +8,8 @@ export const USE_CONVERSATIONS_QUERY_KEY = "use-conversations";
 export const useConversations = () => {
   const { client } = useContext(XmptClientContext);
 
-  return useQuery([USE_CONVERSATIONS_QUERY_KEY], {
+  return useQuery({
+    queryKey: [USE_CONVERSATIONS_QUERY_KEY],
     queryFn: () => (client ? client.conversations.list() : []),
     enabled: !!client,
   });
