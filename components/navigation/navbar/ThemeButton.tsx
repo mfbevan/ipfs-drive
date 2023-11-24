@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { PiPaintBrushBroadDuotone } from "react-icons/pi";
 
 import { daisyTheme, toSentenceCase } from "@/lib";
 
@@ -19,17 +20,8 @@ export const ThemeButton = () => {
 
   return (
     <div className="dropdown">
-      <label tabIndex={0} className="btn m-1">
-        Theme
-        <svg
-          width="12px"
-          height="12px"
-          className="h-2 w-2 fill-current opacity-60 inline-block"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 2048 2048"
-        >
-          <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-        </svg>
+      <label tabIndex={0} className="btn btn-square bg-base-100">
+        <PiPaintBrushBroadDuotone />
       </label>
       <ul
         tabIndex={0}

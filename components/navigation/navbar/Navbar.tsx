@@ -7,10 +7,10 @@ import { navigationItems } from "@/lib";
 
 export const Navbar = () => (
   <div className="navbar bg-base-200 gap-2 px-2 rounded-b-xl drop-shadow-lg">
-    <div className="flex-none text-base-content pl-2 font-bold ">
+    {/* <div className="flex-none text-base-content pl-2 font-bold ">
       💾 ipfs://drive
-    </div>
-    <div className="flex-1">
+    </div> */}
+    <div className="flex-1 gap-2">
       {navigationItems.map((item, index) => (
         <Link
           key={index}

@@ -5,6 +5,10 @@ export interface NavigationItem {
 
 export const navigationItems: NavigationItem[] = [
   {
+    label: "🏠 Home",
+    href: "/",
+  },
+  {
     label: "💬 Messages",
     href: "/messages",
   },
