@@ -40,7 +40,7 @@ export const ThemeButton = () => {
             <input
               type="radio"
               name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start text-content"
+              className="theme-controller btn btn-sm btn-block btn-ghost justify-start text-base-content"
               aria-label={toSentenceCase(item)}
               value={item}
               onChange={(e) => onChangeTheme(e.target.value)}
