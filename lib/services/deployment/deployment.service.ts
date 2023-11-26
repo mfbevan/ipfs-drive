@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 import {
   ThirdwebSDK,
   ChainIdOrNumber,
@@ -24,11 +26,11 @@ export class DeploymentService implements DeploymentServiceInterface {
   ): Promise<string> {
     const metadata: TokenContractDeployMetadata = {
       name: data.name || "Drive",
-      symbol: data.symbol || "💾",
+      symbol: data.symbol || "ipfs-drive",
       app_uri: VERCEL_URL,
       primary_sale_recipient: await this.signer.getAddress(),
     };
 
-    return this.sdk.deployer.deployToken(metadata);
+    return this.sdk.deployer.deployNFTCollection(metadata);
   }
 }

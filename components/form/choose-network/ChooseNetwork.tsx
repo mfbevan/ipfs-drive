@@ -28,7 +28,7 @@ export const ChooseNetwork = ({ networks }: ChooseNetworkProps) => {
         <span className="label-text text-xs ">Network</span>
       </label>
       <div className="dropdown dropdown-hover rounded-lg shadow p-2">
-        <div role="button" className="m-1">
+        <div role="button" className="m-1 flex-row">
           {currentChain?.name || "Invalid Network"}
         </div>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">

@@ -20,4 +20,5 @@ export const clientThirdWebSDK = (
 export const serverThirdWebSDK = (network: ChainOrRpcUrl = defaultNetwork) =>
   ThirdwebSDK.fromPrivateKey(THIRDWEB_AUTH_PRIVATE_KEY, network, {
     secretKey: THIRDWEB_SECRET_KEY,
+    clientId: THIRDWEB_CLIENT_ID,
   });
