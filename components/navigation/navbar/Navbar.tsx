@@ -1,25 +1,34 @@
-import { ConnectWallet } from "@thirdweb-dev/react";
 import Link from "next/link";
 
-import { ThemeButton } from "./ThemeButton";
+import { ThemeButton } from "../theme";
 
-import { NavigationItems } from "@/lib";
+import { StatefulConnectButton, XmptKeysButton } from "@/components";
+import { navigationItems } from "@/lib";
 
 export const Navbar = () => (
-    <div className="navbar bg-neutral gap-2 px-2 ">
-      <div className="flex-none text-neutral-content ">💾 ipfs://drive</div>
-      <div className="flex-1">
-        {NavigationItems.map((item, index) => (
-            <Link key={index} href={item.href} className="btn text-xl">
-              {item.label}
-            </Link>
-          ))}
-      </div>
-      <div>
-        <ThemeButton />
-      </div>
-      <div>
-        <ConnectWallet style={{ height: "50px", fontSize: "16px" }} />
-      </div>
+  <div className="navbar bg-base-200 gap-2 px-2 rounded-b-xl drop-shadow-lg">
+    {/* <div className="flex-none text-base-content pl-2 font-bold ">
+      💾 ipfs://drive
+    </div> */}
+    <div className="flex-1 gap-2">
+      {navigationItems.map((item, index) => (
+        <Link
+          key={index}
+          href={item.href}
+          className="btn btn-ghost text-base-content"
+        >
+          {item.label}
+        </Link>
+      ))}
     </div>
-  );
+    <div>
+      <ThemeButton />
+    </div>
+    <div>
+      <XmptKeysButton />
+    </div>
+    <div>
+      <StatefulConnectButton />
+    </div>
+  </div>
+);

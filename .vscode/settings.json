@@ -1,8 +1,14 @@
 {
-
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#74543d",
+    "titleBar.activeBackground": "#784e3d",
+    "titleBar.activeForeground": "#ffffff",
+    "statusBar.background": "#744a2c",
+    "statusBar.foreground": "#ffffff"
+  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
