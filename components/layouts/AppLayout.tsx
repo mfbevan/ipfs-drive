@@ -13,7 +13,7 @@ export const AppLayout = ({ title, children, breadcrumbs }: AppLayoutProps) => (
     <Head>
       <title>{title}</title>
     </Head>
-    <main className="bg-base-100 min-h-screen flex-col items-center justify-between top-0 absolute w-full">
+    <main className="bg-base-100 flex-col items-center justify-between top-0 absolute w-full">
       <Navbar />
       {breadcrumbs && <PageBreadcrumbs />}
       {children}

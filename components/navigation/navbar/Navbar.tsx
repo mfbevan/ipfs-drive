@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { ThemeButton } from "../theme";
 
-import { StatefulConnectButton } from "@/components";
+import { StatefulConnectButton, XmptKeysButton } from "@/components";
 import { navigationItems } from "@/lib";
 
 export const Navbar = () => (
@@ -23,6 +23,9 @@ export const Navbar = () => (
     </div>
     <div>
       <ThemeButton />
+    </div>
+    <div>
+      <XmptKeysButton />
     </div>
     <div>
       <StatefulConnectButton />
