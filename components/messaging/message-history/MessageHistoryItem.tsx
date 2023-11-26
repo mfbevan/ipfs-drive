@@ -1,6 +1,8 @@
 import { useAddress } from "@thirdweb-dev/react";
 import { DecodedMessage } from "@xmtp/react-sdk";
+import Image from "next/image";
 
+import { Avatar } from "@/components";
 import { shortenString, toDateTimeString } from "@/lib";
 
 export interface MessageHistoryItemProps {
@@ -17,12 +19,8 @@ export const MessageHistoryItem = ({
 
   return (
     <div className={`chat ${incoming ? "chat-start" : "chat-end"}`}>
-      <div className="chat-image avatar">
-        <div className="avatar placeholder">
-          <div className="bg-neutral text-neutral-content rounded-full w-12">
-            <span className="text-3xl"></span>
-          </div>
-        </div>
+      <div className="chat-image avatar rounded-full">
+        <Avatar address={senderAddress} />
       </div>
       {!combine && (
         <div className="chat-header text-base-content">

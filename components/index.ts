@@ -5,3 +5,4 @@ export * from "./layouts";
 export * from "./wallet";
 export * from "./messaging";
 export * from "./form";
+export * from "./avatar";
