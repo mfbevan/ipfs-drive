@@ -8,14 +8,12 @@ import {
 } from "@/components";
 import { useConversation } from "@/lib";
 
-const Home: NextPage = () => {
+const MessagePage: NextPage = () => {
   const { address } = useQueryParams(["address"]);
   const { data: { messages, conversation } = { messages: [] } } =
     useConversation({
       address,
     });
-
-  console.log({ messages, conversation });
 
   if (!conversation) return null;
 
@@ -27,4 +25,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default MessagePage;

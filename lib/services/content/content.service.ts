@@ -19,6 +19,7 @@ export class ContentService implements ContentServiceInterface {
   ): Promise<UploadResponse> {
     Promise.resolve({ encrypted, owner }); // TODO address this when encryption is available
     const cid = await this.storage.upload(file);
+
     return { cid };
   }
 }

@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import { AppLayout, NewConversation, ConversationList } from "@/components";
 import { useConversations } from "@/lib";
 
-const Home: NextPage = () => {
+const MessagesPage: NextPage = () => {
   const { data: conversations, isLoading } = useConversations();
 
   return (
@@ -14,4 +14,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default MessagesPage;
