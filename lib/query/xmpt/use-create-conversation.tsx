@@ -5,6 +5,7 @@ import { z } from "zod";
 
 import { XmptClientContext } from "@/components";
 import { walletAddressSchema } from "@/lib";
+import { EnsService } from "@/lib";
 
 export const createConversationFormSchema = z.object({
   address: walletAddressSchema,
@@ -22,7 +23,9 @@ export const useCreateConversation = () => {
       try {
         if (!client) throw Error("XMPT Client Not Found");
         const { address } = createConversationFormSchema.parse(newConversation);
-        await client.conversations.newConversation(address);
+        await client.conversations.newConversation(
+          await EnsService.resolveEnsName(address)
+        );
       } catch (err: any) {
         toast.error(err.message);
       }
