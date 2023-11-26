@@ -37,15 +37,7 @@ export const XmptClientProvider = ({ children }: XmptClientProviderProps) => {
 
   useEffect(() => {
     if (!signer) return;
-    connect()
-      .then(setClient)
-      .then(async () => {
-        const conversation = await client?.conversations.newConversation(
-          "0x937C0d4a6294cdfa575de17382c7076b579DC176"
-        );
-
-        await conversation?.send("Hello World!");
-      });
+    connect().then(setClient);
   }, [connect, signer]);
 
   const value = useMemo(() => ({ client }), [client]);

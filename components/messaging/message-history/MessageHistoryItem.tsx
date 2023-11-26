@@ -1,6 +1,5 @@
 import { useAddress } from "@thirdweb-dev/react";
 import { DecodedMessage } from "@xmtp/react-sdk";
-import Image from "next/image";
 
 import { Avatar } from "@/components";
 import { shortenString, toDateTimeString } from "@/lib";
