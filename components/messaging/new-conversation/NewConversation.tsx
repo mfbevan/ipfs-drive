@@ -19,12 +19,11 @@ export const NewConversation = () => {
     defaultValues: { address: "" },
     resolver: zodResolver(createConversationFormSchema),
   });
-  const { register, handleSubmit, formState } = form;
-  const { errors } = formState;
+  const { register, handleSubmit } = form;
 
   const onSubmit = async (data: CreateConversationForm) => {
-    console.log(data);
     await createConversation(data);
+    // TODO: redirect to conversation
   };
 
   const onError = (errors: any) => {
@@ -40,7 +39,6 @@ export const NewConversation = () => {
             type="text"
             placeholder="🔎 Enter a user address or ENS name"
             label="Create a new conversation"
-            bottomLeftLabel={errors.address?.message}
             register={register("address")}
           />
 
