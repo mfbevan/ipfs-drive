@@ -1,26 +1,28 @@
-import { Button, Box, chakra } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
 
 import { useColorModeUI } from "../../hooks";
+
+import { BaseIconButton } from "@/components";
 
 /**
  * Toggle the current light/dark mode color settings
  */
 export const DarkModeButton = () => {
-  const { toggleColorMode, icon } = useColorModeUI();
+  const { toggleColorMode, icon, colorMode } = useColorModeUI();
 
   return (
-    <StyledButton variant="inverseStandard" onClick={toggleColorMode}>
-      {icon}
-    </StyledButton>
+    <BaseIconButton
+      colorScheme="accent"
+      icon={icon}
+      aria-label="connect-wallet"
+      label={colorMode === "light" ? "Dark Mode" : "Light Mode"}
+      size="xs"
+      boxSize="40px"
+      rounded="xl"
+      onClick={toggleColorMode}
+    />
   );
 };
-
-const StyledButton = chakra(Button, {
-  baseStyle: {
-    boxSize: "40px",
-    boxShadow: "base",
-  },
-});
 
 export const AbsoluteButtonContainer = chakra(Box, {
   baseStyle: {

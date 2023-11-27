@@ -21,6 +21,28 @@ export const driveService = router({
     .query(async ({ input }) => {
       const { address } = input;
 
+      return {
+        drives: [
+          {
+            name: "asds",
+            address: "0xA00072f482B9CCCB382E1a2157D2B52fc2Adc9A9",
+            network: 11155111,
+            metadata: {
+              name: "asds",
+              seller_fee_basis_points: 0,
+              fee_recipient: "0x0000000000000000000000000000000000000000",
+              symbol: "ipfs-drive",
+              platform_fee_basis_points: 0,
+              platform_fee_recipient:
+                "0x0000000000000000000000000000000000000000",
+              primary_sale_recipient:
+                "0xA1024a7b50a59b07F46F3De40234c3479b5A5908",
+              trusted_forwarders: [],
+            },
+          },
+        ],
+      };
+
       const networksToCheck = [SepoliaTestnet];
 
       const drives = (

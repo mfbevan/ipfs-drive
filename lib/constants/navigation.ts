@@ -4,10 +4,10 @@ export interface NavigationItem {
 }
 
 export const navigationItems: NavigationItem[] = [
-  {
-    label: "🏠 Home",
-    href: "/",
-  },
+  // {
+  //   label: "🏠 Home",
+  //   href: "/",
+  // },
   {
     label: "💾 Drive",
     href: "/drive",

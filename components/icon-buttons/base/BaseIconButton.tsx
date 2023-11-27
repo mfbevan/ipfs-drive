@@ -1,4 +1,9 @@
-import { IconButton, IconButtonProps, LightMode, Tooltip } from "@chakra-ui/react";
+import {
+  IconButton,
+  IconButtonProps,
+  LightMode,
+  Tooltip,
+} from "@chakra-ui/react";
 import Link from "next/link";
 
 export interface LinkedIconProps {
@@ -14,11 +19,15 @@ export interface LinkedIconProps {
 
 export interface BaseIconButtonProps extends IconButtonProps, LinkedIconProps {}
 
-export const BaseIconButton = ({ href, label, ...props }: BaseIconButtonProps) => {
+export const BaseIconButton = ({
+  href,
+  label,
+  ...props
+}: BaseIconButtonProps) => {
   const icon = (
     <LightMode>
       <Tooltip label={label}>
-        <IconButton rounded="2xl" boxSize="40px" {...props} />
+        <IconButton rounded="xl" boxSize="40px" {...props} />
       </Tooltip>
     </LightMode>
   );

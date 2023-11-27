@@ -58,7 +58,7 @@ export const AppDesktopNavigation = ({
         text="Click for more information."
         url="/docs"
       /> */}
-      <Flex gap="5px">
+      <Flex gap="10px">
         <DarkModeButton />
         <XmptKeysButton />
         {withConnection && <StatefulConnectButton />}

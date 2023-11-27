@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const driveSchema = z.object({
   name: z.string(),
+  description: z.string().optional(),
   address: z.string(),
   network: z.number(),
   metadata: z.record(z.any()),

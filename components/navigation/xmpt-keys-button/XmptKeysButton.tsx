@@ -1,4 +1,11 @@
-import { chakra, MenuList, MenuItem, Menu, MenuButton } from "@chakra-ui/react";
+import {
+  chakra,
+  MenuList,
+  MenuItem,
+  Menu,
+  MenuButton,
+  Tooltip,
+} from "@chakra-ui/react";
 import { useContext } from "react";
 import { FaKey } from "react-icons/fa";
 
@@ -12,17 +19,19 @@ export const XmptKeysButton = () => {
 
   return (
     <Menu>
-      <MenuButton>
-        <BaseIconButton
-          colorScheme="accent"
-          icon={<FaKey />}
-          aria-label="connect-wallet"
-          label="Wallet"
-          size="xs"
-          boxSize="40px"
-          rounded="xl"
-        />
-      </MenuButton>
+      <Tooltip label="Xmpt Keys" aria-label="xmpt-keys">
+        <MenuButton>
+          <BaseIconButton
+            colorScheme="accent"
+            icon={<FaKey />}
+            aria-label="connect-wallet"
+            label="Wallet"
+            size="xs"
+            boxSize="40px"
+            rounded="xl"
+          />
+        </MenuButton>
+      </Tooltip>
       <StyledMenuList>
         <StyledMenuItem isDisabled>
           {"XMPT Environment: "}

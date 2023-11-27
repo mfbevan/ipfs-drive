@@ -8,12 +8,12 @@ export const useColorModeUI = () => {
   const { icon, colorModeText } = useMemo(() => {
     if (colorMode === "light") {
       return {
-        icon: <MoonIcon color="accent.500" />,
+        icon: <MoonIcon />,
         colorModeText: "Dark Mode",
       };
     }
     return {
-      icon: <SunIcon color="accent.500" />,
+      icon: <SunIcon />,
       colorModeText: "Light Mode",
     };
   }, [colorMode]);

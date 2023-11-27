@@ -1,6 +1,7 @@
 import { initTRPC } from "@trpc/server";
-import { AuthContext, UnauthorizedError } from "@/lib";
 import superjson from "superjson";
+
+import { AuthContext, UnauthorizedError } from "@/lib";
 
 const t = initTRPC.context<AuthContext>().create({
   transformer: superjson,
@@ -13,6 +14,6 @@ const requireAuth = t.middleware((opts) => {
   return opts.next(opts);
 });
 
-export const { router } = t;
+export const { router, middleware } = t;
 export const procedure = t.procedure;
 export const protectedProcedure = t.procedure.use(requireAuth);

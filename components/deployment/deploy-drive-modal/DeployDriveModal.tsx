@@ -1,3 +1,4 @@
+import { AddIcon } from "@chakra-ui/icons";
 import {
   chakra,
   Modal,
@@ -11,6 +12,7 @@ import {
 
 import { DeployDriveForm } from "./DeployDriveForm";
 
+import { BaseIconButton } from "@/components";
 import { useDriveDeploymentStore } from "@/lib";
 
 export const DEPLOY_DRIVE_MODAL_ID = "deploy_drive_modal";
@@ -22,7 +24,12 @@ export const DeployDriveModal = ({}: DeployDriveModalProps) => {
 
   return (
     <>
-      <Button onClick={onOpen}>New Drive</Button>
+      <BaseIconButton
+        icon={<AddIcon />}
+        aria-label="deploy-new-drive"
+        onClick={onOpen}
+        colorScheme="accent"
+      />
 
       <StyledModal isOpen={isOpen} onClose={onClose} size="sm" isCentered>
         <StyledModal isOpen={isOpen} onClose={onClose} size="sm" isCentered>
