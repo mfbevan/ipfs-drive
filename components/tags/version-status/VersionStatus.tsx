@@ -9,7 +9,7 @@ export interface VersionStatusProps {
 }
 
 export const VersionStatus = ({ header, text, url }: VersionStatusProps) => (
-  <Link href={url} target="_blank">
+  <Link href={url}>
     <Container role="group">
       <WarningIcon size="16px" />
       <TextContainer spacing="0px">

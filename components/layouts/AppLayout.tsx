@@ -28,12 +28,11 @@ const AppContainer = chakra(Flex, {
   baseStyle: {
     flexDirection: "column",
     overflow: "hidden",
-    pt: "60px",
+    pt: "70px",
     maxW: "6xl",
     mx: "auto",
     px: "20px",
     gap: "20px",
     pb: "80px",
-    alignItems: "center",
   },
 });

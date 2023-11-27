@@ -1,3 +1,4 @@
+import { Button, Flex, ModalFooter, chakra } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSigner } from "@thirdweb-dev/react";
 import { useForm } from "react-hook-form";
@@ -6,9 +7,10 @@ import { toast } from "react-toastify";
 import {
   ChooseNetwork,
   DeployDriveFormValues,
+  FormError,
   FormInput,
+  InfoHelper,
   deployDriveSchema,
-  useSpinner,
 } from "@/components";
 import {
   DeploymentService,
@@ -23,7 +25,7 @@ export const DeployDriveForm = () => {
     resolver: zodResolver(deployDriveSchema),
   });
 
-  const { errors } = form.formState;
+  const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (data: DeployDriveFormValues) => {
     console.log(data);
@@ -52,32 +54,66 @@ export const DeployDriveForm = () => {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit, onError)}>
-      <div className="flex flex-row space-x-2">
-        <div className="mb-4">
-          <ChooseNetwork networks={environmentDeploymentNetworks} />
-        </div>
+      <Flex flexDirection="column" gap="10px">
+        <Flex flexDirection="row" gap="10px">
+          <Flex flexDirection="column">
+            <ChooseNetwork networks={environmentDeploymentNetworks} />
+            <FormError form={form} field="name" />
+          </Flex>
+          <Flex flexDirection="column">
+            <FormInput
+              type="text"
+              placeholder="Name"
+              label="Name"
+              register={form.register("name")}
+              infoIcon={
+                <InfoHelper label="The name of the drive to show in the explorer" />
+              }
+              required
+            />
+            <FormError form={form} field="name" />
+          </Flex>
+        </Flex>
         <FormInput
           type="text"
-          placeholder="Name"
-          className="input input-bordered w-full  text-base-content"
-          topLeftLabel="Name"
-          bottomLeftLabel={errors.name?.message}
-          register={form.register("name")}
+          placeholder="Description"
+          label="Description"
+          register={form.register("description")}
+          infoIcon={
+            <InfoHelper label="A brief description of what this drive is for" />
+          }
         />
-      </div>
-      <FormInput
-        type="text"
-        placeholder="Description"
-        className="input input-bordered w-full  text-base-content"
-        topLeftLabel="Description"
-        bottomLeftLabel={errors.description?.message}
-        register={form.register("description")}
-      />
-      <div className="modal-action">
-        <button type="submit" className="btn btn-primary">
-          {useSpinner(form.formState.isSubmitting, "Deploy")}
-        </button>
-      </div>
+        <FormError form={form} field="description" />
+      </Flex>
+
+      <StyledFooter>
+        <Button
+          size="sm"
+          colorScheme="red"
+          variant="ghost"
+          onClick={onClose}
+          isDisabled={isLoading}
+        >
+          Cancel
+        </Button>
+        <Button
+          size="sm"
+          colorScheme="accent"
+          type="submit"
+          isLoading={isLoading}
+        >
+          Deploy
+        </Button>
+      </StyledFooter>
     </form>
   );
 };
+
+const StyledFooter = chakra(ModalFooter, {
+  baseStyle: {
+    gap: "10px",
+    p: "0px",
+    pt: "10px",
+    pb: "15px",
+  },
+});
