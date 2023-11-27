@@ -7,3 +7,4 @@ export * from "./use-spinner";
 export * from "./use-path";
 export * from "./use-is-mobile";
 export * from "./use-color-mode-ui";
+export * from "./use-query-store-sync";

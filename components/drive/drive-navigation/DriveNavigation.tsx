@@ -1,15 +1,21 @@
 import { Flex, chakra } from "@chakra-ui/react";
 import { useAddress } from "@thirdweb-dev/react";
+import { BsGridFill } from "react-icons/bs";
+import { FaThList } from "react-icons/fa";
 
 import { DriveSelect } from "..";
 
+import { BaseIconButton, FormInput } from "@/components";
 import { DeployDriveModal } from "@/components/deployment";
 import { useCurrentDrive } from "@/components/hooks/use-current-drive";
+import { useDriveStore } from "@/lib/stores/drive-store";
 import { trpc } from "@/utils";
 
 export interface DriveNavigationProps {}
 
 export const DriveNavigation = ({}: DriveNavigationProps) => {
+  const { fileDisplayMode, setFileDisplayMode, search, setSearch } =
+    useDriveStore();
   const address = useAddress() ?? "";
   const { currentDrive } = useCurrentDrive();
 
@@ -22,6 +28,27 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
     <NavigationContainer>
       <DeployDriveModal />
       <DriveSelect drives={drives} currentDrive={currentDrive} />
+      <FormInput
+        value={search}
+        // @ts-ignore -- value does exist on target
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="🔍 Search"
+        rounded="xl"
+      />
+
+      <BaseIconButton
+        icon={<FaThList />}
+        aria-label="drive-display-list"
+        colorScheme={fileDisplayMode === "list" ? "accent" : "gray"}
+        onClick={() => setFileDisplayMode("list")}
+      />
+
+      <BaseIconButton
+        icon={<BsGridFill />}
+        aria-label="drive-display-grid"
+        colorScheme={fileDisplayMode === "grid" ? "accent" : "gray"}
+        onClick={() => setFileDisplayMode("grid")}
+      />
     </NavigationContainer>
   );
 };

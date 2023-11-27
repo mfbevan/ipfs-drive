@@ -5,7 +5,7 @@ export const useCurrentDrive = () => {
 
   const isDrive = path.includes("/drive");
 
-  const currentDrive = isDrive ? path.split("/")[2] : "";
+  const currentDrive = isDrive ? path.split("/")[2].split("?")[0] : "";
 
   return { currentDrive, isDrive };
 };
