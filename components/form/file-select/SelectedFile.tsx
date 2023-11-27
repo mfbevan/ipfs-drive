@@ -13,6 +13,7 @@ export const SelectedFile = ({ file, onRemove }: SelectedFileProps) => (
       boxSize="60px"
       rounded="lg"
       mr="5px"
+      alt="selected-file"
     />
     <IconButton
       size="15px"
