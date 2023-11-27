@@ -80,7 +80,7 @@ export const DeployDriveForm = () => {
           label="Description"
           register={form.register("description")}
           infoIcon={
-            <InfoHelper label="A brief description of what this drive is for" />
+            <InfoHelper label="(optional) A brief description of what this drive is for" />
           }
         />
         <FormError form={form} field="description" />

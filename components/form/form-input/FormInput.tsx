@@ -57,7 +57,7 @@ export const FormInput = ({
       {leftAddon && <InputLeftAddon>{leftAddon}</InputLeftAddon>}
       <Input
         type={type}
-        rounded="md"
+        rounded="xl"
         bg="inputArea"
         borderColor="border"
         {...props}
