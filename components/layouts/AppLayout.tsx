@@ -1,6 +1,9 @@
+import { Flex, chakra } from "@chakra-ui/react";
 import Head from "next/head";
 
-import { Navbar, PageBreadcrumbs } from "../navigation";
+import { AppNavigation, PageBreadcrumbs } from "../navigation";
+
+import { navigationItems } from "@/lib";
 
 export interface AppLayoutProps {
   title: string;
@@ -13,10 +16,24 @@ export const AppLayout = ({ title, children, breadcrumbs }: AppLayoutProps) => (
     <Head>
       <title>{title}</title>
     </Head>
-    <main className="bg-base-100 flex-col items-center justify-between top-0 absolute w-full">
-      <Navbar />
+    <AppNavigation navigationItems={navigationItems} />
+    <AppContainer>
       {breadcrumbs && <PageBreadcrumbs />}
       {children}
-    </main>
+    </AppContainer>
   </>
 );
+
+const AppContainer = chakra(Flex, {
+  baseStyle: {
+    flexDirection: "column",
+    overflow: "hidden",
+    pt: "60px",
+    maxW: "6xl",
+    mx: "auto",
+    px: "20px",
+    gap: "20px",
+    pb: "80px",
+    alignItems: "center",
+  },
+});
