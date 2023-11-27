@@ -10,3 +10,5 @@ export const THIRDWEB_AUTH_PRIVATE_KEY = process.env
   .THIRDWEB_AUTH_PRIVATE_KEY as string;
 export const THIRDWEB_SECRET_KEY = process.env.THIRDWEB_SECRET_KEY as string;
 export const XMPT_ENV = (process.env.NEXT_PUBLIC_XMPT_ENV || "dev") as XmtpEnv;
+export const ENABLE_TESTNETS =
+  process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true";

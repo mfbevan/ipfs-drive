@@ -1,6 +1,6 @@
-import { GetHealthResponse, getHealthResponseSchema } from "@/lib";
-
 import { router, procedure } from "../../trpc";
+
+import { GetHealthResponse, getHealthResponseSchema } from "@/lib";
 
 export const healthService = router({
   getHealth: procedure
