@@ -1,7 +1,8 @@
-import { FileType } from "lib";
 import { useRef, useState, ChangeEventHandler, DragEventHandler } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { toast } from "react-toastify";
+
+import { FileType } from "@/lib";
 
 /**
  * File Selector Hook to abstract the logic of the FileSelect component
