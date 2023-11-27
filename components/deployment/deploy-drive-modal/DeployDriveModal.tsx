@@ -1,14 +1,13 @@
-import { AddIcon } from "@chakra-ui/icons";
 import {
   chakra,
   Modal,
   ModalContent,
   ModalBody,
-  Button,
   ModalOverlay,
   ModalHeader,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { BsDatabaseAdd } from "react-icons/bs";
 
 import { DeployDriveForm } from "./DeployDriveForm";
 
@@ -25,10 +24,11 @@ export const DeployDriveModal = ({}: DeployDriveModalProps) => {
   return (
     <>
       <BaseIconButton
-        icon={<AddIcon />}
+        icon={<BsDatabaseAdd />}
         aria-label="deploy-new-drive"
         onClick={onOpen}
         colorScheme="accent"
+        label="New Drive"
       />
 
       <StyledModal isOpen={isOpen} onClose={onClose} size="sm" isCentered>

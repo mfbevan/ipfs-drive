@@ -2,10 +2,12 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
+  LightMode,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Tooltip,
   chakra,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -32,19 +34,24 @@ export const DriveSelect = ({ drives, currentDrive }: DriveSelectProps) => {
     <Flex flexDirection="column">
       <Flex flexDirection="row" w="100%" justifyContent="space-between"></Flex>
       <Menu>
-        <MenuButton
-          as={Button}
-          rightIcon={<ChevronDownIcon />}
-          variant="standard"
-        >
-          <Flex alignItems="center" w="100%" justifyContent="space-between">
-            {fullCurrentDrive ? (
-              <>{fullCurrentDrive?.name}://</>
-            ) : (
-              "Select a Drive"
-            )}
-          </Flex>
-        </MenuButton>
+        <LightMode>
+          <Tooltip label="Select Drive" aria-label="select-drive">
+            <MenuButton
+              as={Button}
+              rightIcon={<ChevronDownIcon />}
+              // variant="standard"
+              colorScheme="accent"
+            >
+              <Flex alignItems="center" w="100%" justifyContent="space-between">
+                {fullCurrentDrive ? (
+                  <>{fullCurrentDrive?.name}://</>
+                ) : (
+                  "Select a Drive"
+                )}
+              </Flex>
+            </MenuButton>
+          </Tooltip>
+        </LightMode>
         <StyledMenuList>
           {drives.map((drive) => (
             <StyledMenuItem

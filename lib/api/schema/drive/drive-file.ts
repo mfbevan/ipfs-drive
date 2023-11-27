@@ -3,8 +3,9 @@ import { z } from "zod";
 export const driveFileMetadata = z.object({
   name: z.string(),
   description: z.string().optional(),
-  createdAt: z.string(),
+  createdAt: z.date(),
   contentType: z.string(),
+  isPublic: z.boolean().optional(),
 });
 
 export type DriveFileMetadata = z.infer<typeof driveFileMetadata>;

@@ -27,6 +27,7 @@ const GridItemContainer = chakra(Flex, {
     border: "1px solid",
     borderColor: "border",
     p: "10px",
+    bg: "itemBg",
   },
 });
 

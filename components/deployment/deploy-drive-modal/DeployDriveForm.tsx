@@ -1,6 +1,7 @@
 import { Button, Flex, ModalFooter, chakra } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSigner } from "@thirdweb-dev/react";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -19,6 +20,7 @@ import {
 } from "@/lib";
 
 export const DeployDriveForm = () => {
+  const router = useRouter();
   const { onClose } = useDriveDeploymentStore();
   const signer = useSigner();
   const form = useForm<DeployDriveFormValues>({
@@ -37,9 +39,10 @@ export const DeployDriveForm = () => {
       if (!chainId) throw new Error("No chainId found");
 
       const deploymentService = new DeploymentService(signer, chainId);
-      await deploymentService.deployDriveContract(data);
+      const address = await deploymentService.deployDriveContract(data);
 
       toast.success("New Drive Created");
+      router.push(`/drive/${address}`);
     } catch (error: any) {
       toast.error(error.message);
     }

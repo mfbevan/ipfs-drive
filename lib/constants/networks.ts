@@ -60,9 +60,9 @@ export const deploymentMainnetNetworks: DeploymentNetwork[] = [
 
 export const deploymentTestNetworks: DeploymentNetwork[] = [
   SepoliaTestnet,
-  OptimismSepoliaTestnet,
+  // OptimismSepoliaTestnet,
   MumbaiTestnet,
-  BaseSepoliaTestnet,
+  // BaseSepoliaTestnet,
 ];
 
 export const allDeploymentNetworks: DeploymentNetwork[] = [
