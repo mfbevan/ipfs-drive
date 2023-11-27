@@ -1,23 +1,31 @@
-import Image from "next/image";
+import {
+  chakra,
+  useColorModeValue,
+  Avatar as ChakraAvatar,
+} from "@chakra-ui/react";
 
 import { AvatarService } from "@/lib";
 export interface AvatarProps {
   address: string;
-  size?: number;
+  size?: string;
 }
 
-export const Avatar = ({ address, size = 12 }: AvatarProps) => {
-  const avatar = AvatarService.getAvatarUrl(address);
+export const Avatar = ({ address, size = "lg" }: AvatarProps) => {
+  const src = AvatarService.getAvatarUrl(address);
 
   return (
-    <div className={`w-${size} rounded-full bg-neutral text-neutral-content`}>
-      <Image
-        src={avatar}
-        alt={address}
-        fill
-        objectFit="cover"
-        className="rounded-full"
-      />
-    </div>
+    <StyledAvatar
+      bg={useColorModeValue("gray.200", "gray.600")}
+      size={size}
+      src={src}
+      aria-label={`avatar-${address}`}
+    />
   );
 };
+
+const StyledAvatar = chakra(ChakraAvatar, {
+  baseStyle: {
+    zIndex: 4,
+    boxShadow: "base",
+  },
+});

@@ -1,5 +1,6 @@
+import { CheckIcon, CopyIcon } from "@chakra-ui/icons";
+import { chakra } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
-import { FaCheck, FaCopy } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 export interface CopyItemProps {
@@ -26,16 +27,20 @@ export const CopyItem = ({
 
   if (!withIcon) {
     return (
-      <span className="hover:cursor-pointer" onClick={handleCopy}>
+      <chakra.span _hover={{ cursor: "pointer" }} onClick={handleCopy}>
         {children}
-      </span>
+      </chakra.span>
     );
   }
 
   return (
-    <span className="hover:cursor-pointer" onClick={handleCopy}>
+    <chakra.span _hover={{ cursor: "pointer" }} onClick={handleCopy}>
       {children}
-      {isCopied ? <FaCheck ml="5px" color="green.500" /> : <FaCopy ml="5px" />}
-    </span>
+      {isCopied ? (
+        <CheckIcon ml="5px" color="green.500" />
+      ) : (
+        <CopyIcon ml="5px" />
+      )}
+    </chakra.span>
   );
 };

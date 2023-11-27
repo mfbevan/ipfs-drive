@@ -1,12 +1,18 @@
 import { NextPage } from "next";
 
-import { AppLayout } from "@/components";
-import { DeployDriveModal } from "@/components/deployment";
+import { AppLayout, PageError } from "@/components";
+import { DriveNavigation } from "@/components/drive/drive-navigation/DriveNavigation";
 
-const DrivePage: NextPage = () => (
+const DrivesPage: NextPage = () => (
   <AppLayout title="Drive" breadcrumbs>
-    <DeployDriveModal />
+    <DriveNavigation />
+    <PageError
+      statusCode="🧐"
+      title="Nothing Here"
+      description="There's nothing here yet. Select a drive or create a new one to get started."
+      backToHome={false}
+    />
   </AppLayout>
 );
 
-export default DrivePage;
+export default DrivesPage;

@@ -1,3 +1,4 @@
+import { Flex, Skeleton, chakra } from "@chakra-ui/react";
 import { CachedConversation, Conversation } from "@xmtp/react-sdk";
 
 import { ConversationListItem } from "./ConversationListItem";
@@ -13,22 +14,36 @@ export const ConversationList = ({
 }: ConversationListProps) => {
   if (isLoading) {
     return (
-      <ul role="list" className="divide-y divide-gray-100 p-2 gap-2">
-        <div className="skeleton h-16 w-full rounded" />
-        <div className="skeleton h-16 w-full rounded" />
-        <div className="skeleton h-16 w-full rounded" />
-      </ul>
+      <ConversationContainer>
+        <MessageItemSkeleton />
+        <MessageItemSkeleton />
+        <MessageItemSkeleton />
+      </ConversationContainer>
     );
   }
 
   return (
-    <ul role="list" className="divide-y divide-gray-100 p-2 gap-2">
+    <ConversationContainer>
       {conversations?.map((conversation) => (
         <ConversationListItem
           conversation={conversation}
           key={conversation.peerAddress}
         />
       ))}
-    </ul>
+    </ConversationContainer>
   );
 };
+
+const MessageItemSkeleton = chakra(Skeleton, {
+  baseStyle: {
+    borderRadius: "xl",
+    height: "60px",
+  },
+});
+
+const ConversationContainer = chakra(Flex, {
+  baseStyle: {
+    flexDirection: "column",
+    gap: "5px",
+  },
+});

@@ -1,8 +1,17 @@
-import { useEffect } from "react";
+import {
+  chakra,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalOverlay,
+  ModalHeader,
+  ModalCloseButton,
+} from "@chakra-ui/react";
+import { BsDatabaseAdd } from "react-icons/bs";
 
 import { DeployDriveForm } from "./DeployDriveForm";
 
-import { Modal, useConditional } from "@/components";
+import { BaseIconButton } from "@/components";
 import { useDriveDeploymentStore } from "@/lib";
 
 export const DEPLOY_DRIVE_MODAL_ID = "deploy_drive_modal";
@@ -12,40 +21,51 @@ export interface DeployDriveModalProps {}
 export const DeployDriveModal = ({}: DeployDriveModalProps) => {
   const { isOpen, onClose, onOpen } = useDriveDeploymentStore();
 
-  const onOpenModal = () => {
-    const modal = document.getElementById(DEPLOY_DRIVE_MODAL_ID) as Modal;
-    modal?.showModal();
-  };
-
-  useEffect(() => {
-    if (isOpen) onOpenModal();
-  }, [isOpen]);
-
   return (
     <>
-      <button className="btn" onClick={onOpen}>
-        New Drive
-      </button>
-      {useConditional(
-        isOpen,
-        <dialog
-          onClose={onClose}
-          id={DEPLOY_DRIVE_MODAL_ID}
-          className="modal text-base-content"
-        >
-          <div className="modal-box">
-            <button
-              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-              onClick={onClose}
-            >
-              ✕
-            </button>
-            <h3 className="font-bold text-lg">New Drive</h3>
-            <p className="py-4">Deploy a new drive smart contract</p>
-            <DeployDriveForm />
-          </div>
-        </dialog>
-      )}
+      <BaseIconButton
+        icon={<BsDatabaseAdd />}
+        aria-label="deploy-new-drive"
+        onClick={onOpen}
+        colorScheme="accent"
+        label="New Drive"
+      />
+
+      <StyledModal isOpen={isOpen} onClose={onClose} size="sm" isCentered>
+        <StyledModal isOpen={isOpen} onClose={onClose} size="sm" isCentered>
+          <ModalOverlay bg="modalOverlayBg" backdropFilter="blur(5px)" />
+          <StyledModalContent>
+            <ModalHeader>
+              New Drive
+              <ModalCloseButton onClick={onClose} />
+            </ModalHeader>
+
+            <StyledModalBody>
+              <DeployDriveForm />
+            </StyledModalBody>
+          </StyledModalContent>
+        </StyledModal>
+      </StyledModal>
     </>
   );
 };
+
+const StyledModal = chakra(Modal, {
+  baseStyle: {},
+});
+
+const StyledModalContent = chakra(ModalContent, {
+  baseStyle: {
+    w: "full",
+    border: "1px solid",
+    borderColor: "border",
+    bg: "itemBg",
+    rounded: "2xl",
+  },
+});
+
+const StyledModalBody = chakra(ModalBody, {
+  baseStyle: {
+    alignItems: "center",
+  },
+});

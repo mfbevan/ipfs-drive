@@ -1,3 +1,14 @@
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import {
+  Button,
+  Flex,
+  FormLabel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  chakra,
+} from "@chakra-ui/react";
 import { useChainId, useSwitchChain } from "@thirdweb-dev/react";
 import { toast } from "react-toastify";
 
@@ -9,7 +20,6 @@ export interface ChooseNetworkProps {
 }
 
 export const ChooseNetwork = ({ networks }: ChooseNetworkProps) => {
-  const options = networks.map((network) => network.name);
   const switchChain = useSwitchChain();
   const chainId = useChainId();
   const currentChain = networks.find((network) => network.chainId === chainId);
@@ -23,36 +33,63 @@ export const ChooseNetwork = ({ networks }: ChooseNetworkProps) => {
   };
 
   return (
-    <div>
-      <label className="label pt-0 pb-1">
-        <span className="label-text text-xs ">Network</span>
-      </label>
-      <div className="dropdown dropdown-hover rounded-lg shadow p-2">
-        <div role="button" className="m-1 flex-row">
-          {currentChain?.name || "Invalid Network"}
-        </div>
-        <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-          {options.map((option) => {
-            const { chainId: optionChainId } =
-              networks.find((_network) => _network.name === option) || {};
-
-            if (!optionChainId) return null;
-
-            return (
-              <li key={option}>
-                <a onClick={async () => onSwitchChain(optionChainId)}>
-                  <div className="flex content-center space-x-2">
-                    <div className="flex">{option}</div>
-                    <div className="flex">
-                      <NetworkIcon network={optionChainId} />
-                    </div>
-                  </div>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
+    <Flex flexDirection="column">
+      <Flex flexDirection="row" w="100%" justifyContent="space-between">
+        <StyledFormLabel>Network</StyledFormLabel>
+      </Flex>
+      <Menu>
+        <MenuButton
+          as={Button}
+          rightIcon={<ChevronDownIcon />}
+          colorScheme="accent"
+        >
+          <Flex alignItems="center" w="100%" justifyContent="space-between">
+            {currentChain ? <>{currentChain?.name}</> : "Invalid Network"}
+          </Flex>
+        </MenuButton>
+        <StyledMenuList>
+          {networks.map((network) => (
+            <StyledMenuItem
+              key={network.name}
+              onClick={() => onSwitchChain(network.chainId)}
+            >
+              <Flex alignItems="center" w="100%" justifyContent="space-between">
+                {network.name}
+                <NetworkIcon network={network.chainId} />
+              </Flex>
+            </StyledMenuItem>
+          ))}
+        </StyledMenuList>
+      </Menu>
+    </Flex>
   );
 };
+
+const StyledFormLabel = chakra(FormLabel, {
+  baseStyle: {
+    fontSize: "0.7rem",
+    mb: "4px",
+    ml: "2px",
+  },
+});
+
+const StyledMenuList = chakra(MenuList, {
+  baseStyle: {
+    rounded: "xl",
+    p: "5px",
+    gap: "2px",
+    bg: "itemBg",
+  },
+});
+
+const StyledMenuItem = chakra(MenuItem, {
+  baseStyle: {
+    rounded: "xl",
+    fontSize: "sm",
+    _hover: {
+      boxShadow: "inner",
+      bg: "itemOffsetBg",
+    },
+    bg: "transparent",
+  },
+});
