@@ -4,9 +4,13 @@ import { router, procedure } from "../../trpc";
 
 import {
   Drive,
+  GetDriveFilesResponse,
+  GetDrivesForAddressResponse,
   SepoliaTestnet,
   TW_CLONE_FACTORY_ADDRESS,
   TW_FACTORY_ABI,
+  getDriveFilesRequest,
+  getDriveFilesResponse,
   getDrivesForAddressRequest,
   getDrivesForAddressResponse,
   serverThirdWebSDK,
@@ -41,7 +45,7 @@ export const driveService = router({
             },
           },
         ],
-      };
+      } satisfies GetDrivesForAddressResponse;
 
       const networksToCheck = [SepoliaTestnet];
 
@@ -88,6 +92,109 @@ export const driveService = router({
         )
       ).flat();
 
-      return { drives };
+      return { drives } satisfies GetDrivesForAddressResponse;
+    }),
+
+  /**
+   * Get all of the files for a drive
+   */
+  getDriveFiles: procedure
+    .input(getDriveFilesRequest)
+    .output(getDriveFilesResponse)
+    .query(async ({}) => {
+      const files = [
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+        {
+          content: "ipfs://QmWBgfBhyVmHNhBfEQ7p1P4Mpn7pm5b8KgSab2caELnTuV",
+          metadata: {
+            name: "asdasd",
+            description: "asdasd",
+            createdAt: "asdasd",
+            contentType: "asdasd",
+          },
+        },
+      ];
+
+      return { files } satisfies GetDriveFilesResponse;
     }),
 });

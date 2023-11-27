@@ -28,7 +28,7 @@ const AppContainer = chakra(Flex, {
   baseStyle: {
     flexDirection: "column",
     overflow: "hidden",
-    pt: "70px",
+    pt: "80px",
     maxW: "6xl",
     mx: "auto",
     px: "20px",

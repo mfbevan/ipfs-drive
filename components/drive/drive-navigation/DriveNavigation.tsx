@@ -34,6 +34,7 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
         onChange={(e) => setSearch(e.target.value)}
         placeholder="🔍 Search"
         rounded="xl"
+        isDisabled
       />
 
       <BaseIconButton
@@ -64,8 +65,5 @@ const NavigationContainer = chakra(Flex, {
     p: "10px",
     bg: "itemBg",
     gap: "10px",
-    _hover: {
-      boxShadow: "md",
-    },
   },
 });
