@@ -1,3 +1,4 @@
+import { useColorMode } from "@chakra-ui/react";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { FaWallet } from "react-icons/fa";
 
@@ -7,6 +8,7 @@ export const StatefulConnectButton = () => (
   <ConnectWallet
     style={{ height: "50px" }}
     className="text-base btn btn-primary"
+    theme={useColorMode().colorMode}
     detailsBtn={() => (
       <BaseIconButton
         colorScheme="accent"

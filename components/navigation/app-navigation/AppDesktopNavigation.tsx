@@ -5,9 +5,12 @@ import { ReactNode } from "react";
 
 import { usePath } from "../../hooks";
 import { nexethLogoTransparent } from "../../images";
-import { VersionStatus } from "../../tags";
 
-import { StatefulConnectButton } from "@/components";
+import {
+  DarkModeButton,
+  StatefulConnectButton,
+  XmptKeysButton,
+} from "@/components";
 import { NavigationItem } from "@/lib";
 
 export interface AppDesktopNavigationProps {
@@ -50,13 +53,17 @@ export const AppDesktopNavigation = ({
       })}
 
       <Spacer />
-      <VersionStatus
+      {/* <VersionStatus
         header="Early Version Disclaimer"
         text="Click for more information."
         url="/docs"
-      />
-      {withConnection && <StatefulConnectButton />}
-      {additionalNavigation}
+      /> */}
+      <Flex gap="5px">
+        <DarkModeButton />
+        <XmptKeysButton />
+        {withConnection && <StatefulConnectButton />}
+        {additionalNavigation}
+      </Flex>
     </>
   );
 };
