@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 
-import { usePath } from "../../hooks";
+import { usePath, useSessionUser } from "../../hooks";
 import { nexethLogoTransparent } from "../../images";
 
 import {
@@ -25,6 +25,9 @@ export const AppDesktopNavigation = ({
   withConnection,
 }: AppDesktopNavigationProps) => {
   const { basePath, path } = usePath();
+  const { isConnected } = useSessionUser();
+
+  const navigationItemsToShow = isConnected ? navigationItems : [];
 
   return (
     <>
@@ -36,7 +39,7 @@ export const AppDesktopNavigation = ({
           width="40"
         />
       </Link>
-      {navigationItems?.map((item) => {
+      {navigationItemsToShow?.map((item) => {
         const selected =
           item.href && item.href !== "/"
             ? path.startsWith(item.href)
@@ -60,7 +63,7 @@ export const AppDesktopNavigation = ({
       /> */}
       <Flex gap="10px">
         <DarkModeButton />
-        <XmptKeysButton />
+        {isConnected && <XmptKeysButton />}
         {withConnection && <StatefulConnectButton />}
         {additionalNavigation}
       </Flex>

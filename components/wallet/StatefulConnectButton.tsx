@@ -6,7 +6,7 @@ import { BaseIconButton } from "../icon-buttons";
 
 export const StatefulConnectButton = () => (
   <ConnectWallet
-    style={{ height: "50px" }}
+    style={{ height: "40px", borderRadius: "0.75rem" }}
     className="text-base btn btn-primary"
     theme={useColorMode().colorMode}
     detailsBtn={() => (
