@@ -34,7 +34,7 @@ const CardContainer = chakra(Flex, {
     bg: "itemBg",
     gap: "10px",
     _hover: {
-      boxShadow: "md",
+      bg: "itemOffsetBg",
     },
   },
 });
