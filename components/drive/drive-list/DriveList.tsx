@@ -31,8 +31,8 @@ export const DriveList = ({ files }: DriveListProps) => (
           </Tr>
         </Thead>
         <Tbody>
-          {files.map((file) => (
-            <DriveListItem key={file.content} file={file} />
+          {files.map((file, index) => (
+            <DriveListItem key={index.toFixed()} file={file} />
           ))}
         </Tbody>
       </Table>

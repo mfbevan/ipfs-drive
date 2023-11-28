@@ -14,8 +14,8 @@ export const DriveGrid = ({ files }: DriveGridProps) => (
     spacing="20px"
     w="full"
   >
-    {files.map((file) => (
-      <DriveGridItem file={file} />
+    {files.map((file, index) => (
+      <DriveGridItem key={index.toFixed()} file={file} />
     ))}
   </SimpleGrid>
 );

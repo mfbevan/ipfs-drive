@@ -4,15 +4,28 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 
-export const PageBreadcrumbs = () => {
+export interface PageBreadcrumbsProps {
+  filterChains?: boolean;
+}
+
+export const PageBreadcrumbs = ({
+  filterChains,
+}: PageBreadcrumbsProps = {}) => {
   const router = useRouter();
 
   const paths = useMemo(() => {
     if (router.isFallback) return [];
-    return router.asPath
+    const allPaths = router.asPath
       .split("/")
       .filter((x) => x)
       .map((path) => (path.includes("?") ? path.split("?")[0] : path));
+
+    if (filterChains) {
+      return allPaths.filter(
+        (path) => path.startsWith("0x") || isNaN(Number(path))
+      );
+    }
+    return allPaths;
   }, [router]);
 
   return (

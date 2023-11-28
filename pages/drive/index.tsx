@@ -3,8 +3,12 @@ import { NextPage } from "next";
 import { AppLayout, PageError } from "@/components";
 import { DriveNavigation } from "@/components/drive/drive-navigation/DriveNavigation";
 
-const DrivesPage: NextPage = () => (
-  <AppLayout title="Drive" breadcrumbs>
+export const DrivesPage: NextPage = () => (
+  <AppLayout
+    title="Drive"
+    breadcrumbs
+    breadcrumbOptions={{ filterChains: true }}
+  >
     <DriveNavigation />
     <PageError
       statusCode="🧐"

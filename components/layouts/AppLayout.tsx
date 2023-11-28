@@ -1,24 +1,34 @@
 import { Flex, chakra } from "@chakra-ui/react";
 import Head from "next/head";
 
-import { AppNavigation, PageBreadcrumbs } from "../navigation";
+import {
+  AppNavigation,
+  PageBreadcrumbs,
+  PageBreadcrumbsProps,
+} from "../navigation";
 
 import { navigationItems } from "@/lib";
 
 export interface AppLayoutProps {
   title: string;
   breadcrumbs?: boolean;
+  breadcrumbOptions?: PageBreadcrumbsProps;
   children?: React.ReactNode;
 }
 
-export const AppLayout = ({ title, children, breadcrumbs }: AppLayoutProps) => (
+export const AppLayout = ({
+  title,
+  children,
+  breadcrumbs,
+  breadcrumbOptions,
+}: AppLayoutProps) => (
   <>
     <Head>
       <title>{title}</title>
     </Head>
     <AppNavigation navigationItems={navigationItems} />
     <AppContainer>
-      {breadcrumbs && <PageBreadcrumbs />}
+      {breadcrumbs && <PageBreadcrumbs {...breadcrumbOptions} />}
       {children}
     </AppContainer>
   </>

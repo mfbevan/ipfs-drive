@@ -10,7 +10,6 @@ import {
   Tooltip,
   chakra,
 } from "@chakra-ui/react";
-import { useSwitchChain } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 
 import { NetworkIcon } from "@/components";
@@ -23,15 +22,13 @@ export interface DriveSelectProps {
 
 export const DriveSelect = ({ drives, currentDrive }: DriveSelectProps) => {
   const router = useRouter();
-  const switchChain = useSwitchChain();
   const fullCurrentDrive = drives.find(
     (drive) => drive.address === currentDrive
   );
 
   const onDriveSelect = async (address: string) => {
-    router.push(`/drive/${address}`);
     const newDrive = drives.find((drive) => drive.address === address);
-    await switchChain(newDrive?.network as number);
+    router.push(`/drive/${newDrive?.network}/${address}`);
   };
 
   return (

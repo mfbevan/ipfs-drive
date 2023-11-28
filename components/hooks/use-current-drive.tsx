@@ -1,11 +1,25 @@
-import { usePath } from ".";
+import { useChainId, useSwitchChain } from "@thirdweb-dev/react";
+
+import { usePath, useQueryParams } from ".";
 
 export const useCurrentDrive = () => {
   const { path } = usePath();
+  const switchChain = useSwitchChain();
+  const currentChainId = useChainId();
 
-  const isDrive = path.includes("/drive");
+  const { network: chainId, address: currentDrive } = useQueryParams([
+    "network",
+    "address",
+  ]);
 
-  const currentDrive = isDrive ? path?.split("/")[2]?.split("?")[0] : "";
+  const isDrive = path.includes("/drive") && chainId && currentDrive;
+  const isNetworkMismatch = Number(chainId) !== currentChainId;
 
-  return { currentDrive, isDrive };
+  const switchToChain = async () => {
+    if (isNetworkMismatch) {
+      await switchChain(Number(chainId));
+    }
+  };
+
+  return { currentDrive, chainId, isDrive, isNetworkMismatch, switchToChain };
 };

@@ -15,7 +15,7 @@ import { FileDisplayMode, useDriveStore } from "@/lib";
 import { trpc } from "@/utils";
 
 const DrivePage: NextPage = () => {
-  const { address: driveAddress } = useQueryParams(["address"]);
+  const { address: driveAddress } = useQueryParams(["network", "address"]);
   const { fileDisplayMode, setFileDisplayMode } = useDriveStore();
   useQueryStoreSync("fileDisplayMode", fileDisplayMode, setFileDisplayMode);
 
@@ -29,7 +29,11 @@ const DrivePage: NextPage = () => {
   };
 
   return (
-    <AppLayout title="Drive" breadcrumbs>
+    <AppLayout
+      title="Drive"
+      breadcrumbs
+      breadcrumbOptions={{ filterChains: true }}
+    >
       <DriveNavigation />
       <FileDrawer />
       {hasFiles ? (
