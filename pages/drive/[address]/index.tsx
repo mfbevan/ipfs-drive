@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import {
   AppLayout,
   DriveList,
+  FileDrawer,
   PageError,
   useQueryParams,
   useQueryStoreSync,
@@ -30,6 +31,7 @@ const DrivePage: NextPage = () => {
   return (
     <AppLayout title="Drive" breadcrumbs>
       <DriveNavigation />
+      <FileDrawer />
       {hasFiles ? (
         displayModes[fileDisplayMode]
       ) : (

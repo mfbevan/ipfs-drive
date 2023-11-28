@@ -10,3 +10,4 @@ export * from "./wallet";
 export * from "./theme";
 export * from "./icon-buttons";
 export * from "./drive";
+export * from "./table";

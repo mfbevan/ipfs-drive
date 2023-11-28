@@ -1,7 +1,7 @@
 import { Flex, Text, chakra } from "@chakra-ui/react";
 import { MediaRenderer } from "@thirdweb-dev/react";
 
-import { DriveFile } from "@/lib";
+import { DriveFile, useDriveStore } from "@/lib";
 
 export interface DriveGridItemProps {
   file: DriveFile;
@@ -9,12 +9,18 @@ export interface DriveGridItemProps {
 
 export const DriveGridItem = ({
   file: { content, metadata },
-}: DriveGridItemProps) => (
-  <GridItemContainer>
-    <MediaRenderer src={content} height="180px" />
-    <FileName>{metadata.name}</FileName>
-  </GridItemContainer>
-);
+  file,
+}: DriveGridItemProps) => {
+  const { setSelectedFile } = useDriveStore();
+  const onClick = () => setSelectedFile(file);
+
+  return (
+    <GridItemContainer onClick={onClick}>
+      <MediaRenderer src={content} height="180px" />
+      <FileName>{metadata.name}</FileName>
+    </GridItemContainer>
+  );
+};
 
 const GridItemContainer = chakra(Flex, {
   baseStyle: {
@@ -28,6 +34,7 @@ const GridItemContainer = chakra(Flex, {
     borderColor: "border",
     p: "10px",
     bg: "itemBg",
+    cursor: "pointer",
   },
 });
 

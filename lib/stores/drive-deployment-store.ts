@@ -5,7 +5,6 @@ export interface DriveDeploymentStore {
   onOpen: () => void;
   onClose: () => void;
   onToggle: () => void;
-  isLoading: boolean;
 }
 
 export const useDriveDeploymentStore = create<DriveDeploymentStore>((set) => ({

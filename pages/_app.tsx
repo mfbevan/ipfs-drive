@@ -12,13 +12,15 @@ import {
   FeatureProvider,
   XmptClientProvider,
   theme,
-  useProviderConfig,
+  useProviderConfig as config,
 } from "@/components";
 import { trpc } from "@/utils/trpc";
 
+const providerConfig = config();
+
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <FeatureProvider>
-    <ThirdwebProvider {...useProviderConfig()}>
+    <ThirdwebProvider {...providerConfig}>
       <XMTPProvider>
         <XmptClientProvider>
           <ChakraProvider theme={theme}>

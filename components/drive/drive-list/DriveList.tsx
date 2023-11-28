@@ -47,7 +47,7 @@ const ListContainer = chakra(Flex, {
     border: "1px solid",
     borderColor: "border",
     rounded: "xl",
-    p: "10px",
+    py: "10px",
     bg: "itemBg",
   },
 });

@@ -28,6 +28,7 @@
     "daisyui": "^4.4.6",
     "ethers": "^5",
     "framer-motion": "^10.16.5",
+    "js-file-download": "^0.4.12",
     "next": "14.0.3",
     "nextjs-progressbar": "^0.0.16",
     "react": "^18",
