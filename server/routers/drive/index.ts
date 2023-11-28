@@ -26,6 +26,7 @@ export const driveService = router({
     .output(getDrivesForAddressResponse)
     .query(async ({ input }) => {
       const { address } = input;
+      console.log({ address, environmentDeploymentNetworks });
 
       const drives = (
         await Promise.all(
