@@ -7,7 +7,7 @@ const MessagesPage: NextPage = () => {
   const { data: conversations, isLoading } = useConversations();
 
   return (
-    <AppLayout title="Messages" breadcrumbs>
+    <AppLayout title="Nexeth - Messages" breadcrumbs>
       <NewConversation />
       <ConversationList conversations={conversations} isLoading={isLoading} />
     </AppLayout>

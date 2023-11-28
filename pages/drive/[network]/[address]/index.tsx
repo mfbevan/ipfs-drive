@@ -30,7 +30,7 @@ const DrivePage: NextPage = () => {
 
   return (
     <AppLayout
-      title="Drive"
+      title="Nexeth - Drive"
       breadcrumbs
       breadcrumbOptions={{ filterChains: true }}
     >

@@ -18,7 +18,7 @@ const MessagePage: NextPage = () => {
   if (!conversation) return null;
 
   return (
-    <AppLayout title="Messages" breadcrumbs>
+    <AppLayout title="Nexeth - Messages" breadcrumbs>
       <MessageHistory messages={messages} />
       <SendMessage conversation={conversation} />
     </AppLayout>

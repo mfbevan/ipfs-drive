@@ -5,7 +5,7 @@ import { DriveNavigation } from "@/components/drive/drive-navigation/DriveNaviga
 
 export const DrivesPage: NextPage = () => (
   <AppLayout
-    title="Drive"
+    title="Nexeth - Drive"
     breadcrumbs
     breadcrumbOptions={{ filterChains: true }}
   >
