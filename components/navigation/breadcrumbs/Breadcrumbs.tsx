@@ -9,7 +9,10 @@ export const PageBreadcrumbs = () => {
 
   const paths = useMemo(() => {
     if (router.isFallback) return [];
-    return router.asPath.split("/").filter((x) => x);
+    return router.asPath
+      .split("/")
+      .filter((x) => x)
+      .map((path) => (path.includes("?") ? path.split("?")[0] : path));
   }, [router]);
 
   return (

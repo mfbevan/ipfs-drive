@@ -1,4 +1,15 @@
-import { ChainId, ChainIdOrNumber } from "@thirdweb-dev/sdk";
+import {
+  Base,
+  BaseGoerli,
+  Ethereum,
+  Goerli,
+  Mumbai,
+  Optimism,
+  OptimismGoerli,
+  Polygon,
+  Sepolia,
+} from "@thirdweb-dev/chains";
+import { ChainIdOrNumber } from "@thirdweb-dev/sdk";
 
 import { ENABLE_TESTNETS } from ".";
 
@@ -7,62 +18,19 @@ export interface DeploymentNetwork {
   chainId: ChainIdOrNumber;
 }
 
-// MAINNET
-
-export const EthereumMainnet: DeploymentNetwork = {
-  name: "Ethereum",
-  chainId: ChainId.Mainnet,
-};
-
-export const OptimismMainnet: DeploymentNetwork = {
-  name: "Optimism",
-  chainId: ChainId.Optimism,
-};
-
-export const PolygonMainnet: DeploymentNetwork = {
-  name: "Polygon",
-  chainId: ChainId.Polygon,
-};
-
-export const BaseMainnet: DeploymentNetwork = {
-  name: "Base",
-  chainId: 8453,
-};
-
-// TESTNET
-
-export const SepoliaTestnet: DeploymentNetwork = {
-  name: "Sepolia",
-  chainId: 11155111,
-};
-
-export const OptimismSepoliaTestnet: DeploymentNetwork = {
-  name: "Optimism Sepolia",
-  chainId: 11155420,
-};
-
-export const MumbaiTestnet: DeploymentNetwork = {
-  name: "Mumbai",
-  chainId: ChainId.Mumbai,
-};
-
-export const BaseSepoliaTestnet: DeploymentNetwork = {
-  name: "Base Sepolia",
-  chainId: 84532,
-};
-
 export const deploymentMainnetNetworks: DeploymentNetwork[] = [
-  EthereumMainnet,
-  OptimismMainnet,
-  PolygonMainnet,
-  BaseMainnet,
+  Ethereum,
+  Optimism,
+  Polygon,
+  Base,
 ];
 
 export const deploymentTestNetworks: DeploymentNetwork[] = [
-  SepoliaTestnet,
-  // OptimismSepoliaTestnet,
-  MumbaiTestnet,
-  // BaseSepoliaTestnet,
+  Goerli,
+  Sepolia,
+  OptimismGoerli,
+  Mumbai,
+  BaseGoerli,
 ];
 
 export const allDeploymentNetworks: DeploymentNetwork[] = [
@@ -82,52 +50,75 @@ export const networkData: Record<
     openSeaBaseUrl: string;
   }
 > = {
-  [EthereumMainnet.chainId]: {
+  [Ethereum.chainId]: {
     name: "Ethereum",
     image: "/networks/ethereum.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://opensea.io/assets/ethereum/",
   },
-  [PolygonMainnet.chainId]: {
+  [Polygon.chainId]: {
     name: "Polygon",
     image: "/networks/polygon.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://opensea.io/assets/polygon/",
   },
-  [OptimismMainnet.chainId]: {
+  [Optimism.chainId]: {
     name: "Optimism",
     image: "/networks/optimism.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://opensea.io/assets/optimism/",
   },
-  [BaseMainnet.chainId]: {
+  [Base.chainId]: {
     name: "Base",
     image: "/networks/base.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://opensea.io/assets/base/",
   },
-  [SepoliaTestnet.chainId]: {
+  [Sepolia.chainId]: {
     name: "Sepolia",
+    image: "/networks/ethereum.svg",
+    colorScheme: "gray",
+    openSeaBaseUrl: "https://testnets.opensea.io/assets/sepolia/",
+  },
+  [Goerli.chainId]: {
+    name: "Goerli",
     image: "/networks/ethereum.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://testnets.opensea.io/assets/goerli/",
   },
-  [MumbaiTestnet.chainId]: {
+  [Mumbai.chainId]: {
     name: "Mumbai",
     image: "/networks/polygon.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://testnets.opensea.io/assets/mumbai/",
   },
-  [OptimismSepoliaTestnet.chainId]: {
-    name: "Optimism Sepolia",
+  [OptimismGoerli.chainId]: {
+    name: "Optimism Goerli",
     image: "/networks/optimism.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://testnets.opensea.io/assets/optimism-goerli/",
   },
-  [BaseSepoliaTestnet.chainId]: {
-    name: "Base Sepolia",
+  [BaseGoerli.chainId]: {
+    name: "Base Goerli",
     image: "/networks/base.svg",
     colorScheme: "gray",
     openSeaBaseUrl: "https://testnets.opensea.io/assets/base/",
   },
+} as const;
+
+/**
+ * The block number that indexing should start at for each network
+ * @param chainId
+ * @returns The block number to start indexing at
+ */
+export const indexingStartBlocks: Record<number, number> = {
+  [Ethereum.chainId]: 18669824,
+  [Polygon.chainId]: 50490493,
+  [Optimism.chainId]: 112786342,
+  [Base.chainId]: 7191076,
+  [Sepolia.chainId]: 4769661,
+  [Goerli.chainId]: 10121450,
+  [Mumbai.chainId]: 42905552,
+  [OptimismGoerli.chainId]: 17871705,
+  [BaseGoerli.chainId]: 12988947,
 } as const;

@@ -13,8 +13,10 @@ import {
   getDriveFilesResponse,
   getDrivesForAddressRequest,
   getDrivesForAddressResponse,
+  indexingStartBlocks,
   serverThirdWebSDK,
 } from "@/lib";
+
 export const driveService = router({
   /**
    * Get all of the drives for an address
@@ -55,10 +57,6 @@ export const driveService = router({
             const sdk = serverThirdWebSDK(network.chainId);
             const provider = sdk.getProvider();
 
-            // const contracts = await sdk.getContractList(address);
-            // console.log(contracts);
-            // TODO get above function to work properly
-
             const contract = new Contract(
               TW_CLONE_FACTORY_ADDRESS,
               TW_FACTORY_ABI,
@@ -68,7 +66,8 @@ export const driveService = router({
             if (!(await contract.deployed())) return [];
 
             const filter = contract.filters.ProxyDeployed(null, null, address);
-            const logs = await contract.queryFilter(filter);
+            const startBlock = indexingStartBlocks[network.chainId]; // Used to minimize query time
+            const logs = await contract.queryFilter(filter, startBlock);
 
             const contractsWithMetadata = (
               await Promise.all(
