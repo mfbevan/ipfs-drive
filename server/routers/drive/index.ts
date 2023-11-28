@@ -53,8 +53,6 @@ export const driveService = router({
               const startBlock = indexingStartBlocks[network.chainId]; // Used to minimize query time
               const logs = await contract.queryFilter(filter, startBlock);
 
-              console.log({ logs: logs.length });
-
               const contractsWithMetadata = (
                 await Promise.all(
                   logs.map(async (log) => {

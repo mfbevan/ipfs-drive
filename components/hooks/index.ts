@@ -12,3 +12,4 @@ export * from "./use-drive-list";
 export * from "./use-current-drive";
 export * from "./use-ipfs-url";
 export * from "./use-ipfs-download";
+export * from "./use-cache";

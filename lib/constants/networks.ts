@@ -1,6 +1,7 @@
 import {
   Base,
   BaseGoerli,
+  Chain,
   Ethereum,
   Goerli,
   Mumbai,
@@ -9,23 +10,17 @@ import {
   Polygon,
   Sepolia,
 } from "@thirdweb-dev/chains";
-import { ChainIdOrNumber } from "@thirdweb-dev/sdk";
 
 import { ENABLE_TESTNETS } from ".";
 
-export interface DeploymentNetwork {
-  name: string;
-  chainId: ChainIdOrNumber;
-}
-
-export const deploymentMainnetNetworks: DeploymentNetwork[] = [
+export const deploymentMainnetNetworks: Chain[] = [
   Ethereum,
   Optimism,
   Polygon,
   Base,
 ];
 
-export const deploymentTestNetworks: DeploymentNetwork[] = [
+export const deploymentTestNetworks: Chain[] = [
   Goerli,
   Sepolia,
   OptimismGoerli,
@@ -33,13 +28,14 @@ export const deploymentTestNetworks: DeploymentNetwork[] = [
   BaseGoerli,
 ];
 
-export const allDeploymentNetworks: DeploymentNetwork[] = [
+export const allDeploymentNetworks: Chain[] = [
   ...deploymentMainnetNetworks,
   ...deploymentTestNetworks,
 ];
 
-export const environmentDeploymentNetworks: DeploymentNetwork[] =
-  ENABLE_TESTNETS ? deploymentTestNetworks : deploymentMainnetNetworks;
+export const environmentDeploymentNetworks: Chain[] = ENABLE_TESTNETS
+  ? deploymentTestNetworks
+  : deploymentMainnetNetworks;
 
 export const networkData: Record<
   number,

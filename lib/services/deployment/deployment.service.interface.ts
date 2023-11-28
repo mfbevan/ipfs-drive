@@ -1,5 +1,7 @@
 import { TokenContractDeployMetadata } from "@thirdweb-dev/sdk";
 
+import { GetDrivesForAddressResponse } from "@/lib";
+
 export interface DeploymentServiceInterface {
   /**
    * Deploy a new ERC721 Drive contract
@@ -10,13 +12,9 @@ export interface DeploymentServiceInterface {
     data: Partial<TokenContractDeployMetadata>
   ): Promise<string>;
 
-  // /**
-  //  * Retrieve the addresses of all drive contracts deployed by a user
-  //  * @param address The address of the deployer
-  //  * @param factoryAddress The address of the factory through which the contracts were deployed
-  //  */
-  // getDeployedDriveContracts(
-  //   address: string,
-  //   factoryAddress: string
-  // ): Promise<string[]>;
+  /**
+   * Retrieve the addresses of all drive contracts deployed by a user
+   * @param address The address of the deployer
+   */
+  getDrivesForAddress(address: string): Promise<GetDrivesForAddressResponse>;
 }

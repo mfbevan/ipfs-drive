@@ -1,21 +1,43 @@
-import { Drive, disableAllQueryRefetch } from "@/lib";
-import { trpc } from "@/utils";
+import { useSigner } from "@thirdweb-dev/react";
+import { useEffect, useState } from "react";
+
+import { useCache } from ".";
+
+import { DeploymentService, Drive, GetDrivesForAddressResponse } from "@/lib";
 
 export const DRIVE_LIST_CACHE_KEY = "drive-list";
 
-export const useDriveList = (address: string) => {
-  const { data, ...response } = trpc.drive.getDrivesForAddress.useQuery(
-    { address },
-    {
-      ...disableAllQueryRefetch,
-      enabled: !!address,
+export const useDriveList = () => {
+  const signer = useSigner();
+  const [isLoading, setIsLoading] = useState(false);
+  const { getCache, setCache } =
+    useCache<GetDrivesForAddressResponse>(DRIVE_LIST_CACHE_KEY);
+  const [cached, setCached] = useState<GetDrivesForAddressResponse>();
+
+  useEffect(() => {
+    const cache = getCache();
+    if (cache) {
+      setCached(cache);
     }
-  );
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only run automatically on page load
+  }, []);
 
-  const drives: Drive[] = data?.drives ?? [];
-
-  return {
-    drives,
-    ...response,
+  const refetch = async () => {
+    if (!signer) return;
+    setIsLoading(true);
+    const service = new DeploymentService(signer);
+    const driveList = await service.getDrivesForAddress(
+      await signer.getAddress()
+    );
+    setCache(driveList);
+    setCached(driveList);
+    setIsLoading(false);
   };
+
+  const drives: Drive[] = cached ? cached.drives : [];
+  const isFetching = isLoading && !cached;
+  const isFetched = !isLoading && !!cached;
+
+  return { drives, refetch, isLoading, isFetching, isFetched };
 };

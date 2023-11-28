@@ -30,7 +30,6 @@ export const DeployDriveForm = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (data: DeployDriveFormValues) => {
-    console.log(data);
     if (!signer) return;
 
     try {

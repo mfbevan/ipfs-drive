@@ -1,6 +1,5 @@
 import { RepeatIcon } from "@chakra-ui/icons";
 import { Divider, Flex, Skeleton, chakra } from "@chakra-ui/react";
-import { useAddress } from "@thirdweb-dev/react";
 import { BsGridFill } from "react-icons/bs";
 import { FaThList } from "react-icons/fa";
 
@@ -16,13 +15,10 @@ export interface DriveNavigationProps {}
 export const DriveNavigation = ({}: DriveNavigationProps) => {
   const { fileDisplayMode, setFileDisplayMode, search, setSearch } =
     useDriveStore();
-  const address = useAddress();
   const { currentDrive } = useCurrentDrive();
-  const { drives, isFetched, isLoading, isFetching, refetch } = useDriveList(
-    address ?? ""
-  );
+  const { drives, isLoading, isFetching, isFetched, refetch } = useDriveList();
 
-  if (!isFetched || isLoading) {
+  if (!isFetched && isFetching) {
     return (
       <NavigationContainer>
         <Flex flex={1} gap="10px">
@@ -48,10 +44,10 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
         <DeployDriveModal />
         <BaseIconButton
           icon={<RepeatIcon />}
-          isLoading={isFetching}
+          isLoading={isLoading}
           aria-label="refetch-drive-list"
           colorScheme="accent"
-          onClick={() => refetch()}
+          onClick={refetch}
           label="Refetch Drives"
         />
         <DriveSelect drives={drives} currentDrive={currentDrive} />
