@@ -6,27 +6,21 @@ import { FaThList } from "react-icons/fa";
 
 import { DriveSelect } from "..";
 
-import { BaseIconButton, FormInput } from "@/components";
+import { BaseIconButton, FormInput, useDriveList } from "@/components";
 import { DeployDriveModal } from "@/components/deployment";
 import { useCurrentDrive } from "@/components/hooks/use-current-drive";
-import { disableAllQueryRefetch } from "@/lib";
 import { useDriveStore } from "@/lib/stores/drive-store";
-import { trpc } from "@/utils";
 
 export interface DriveNavigationProps {}
 
 export const DriveNavigation = ({}: DriveNavigationProps) => {
   const { fileDisplayMode, setFileDisplayMode, search, setSearch } =
     useDriveStore();
-  const address = useAddress() ?? "";
+  const address = useAddress();
   const { currentDrive } = useCurrentDrive();
-
-  const { data, refetch, isLoading, isFetched, isFetching } =
-    trpc.drive.getDrivesForAddress.useQuery(
-      { address },
-      { ...disableAllQueryRefetch, enabled: !!address }
-    );
-  const drives = data?.drives ?? [];
+  const { drives, isFetched, isLoading, isFetching, refetch } = useDriveList(
+    address ?? ""
+  );
 
   if (!isFetched || isLoading) {
     return (
