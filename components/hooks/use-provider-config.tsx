@@ -1,17 +1,22 @@
 import {
+  bloctoWallet,
   coinbaseWallet,
-  magicLink,
+  embeddedWallet,
+  frameWallet,
+  localWallet,
   metamaskWallet,
+  phantomWallet,
   rainbowWallet,
   safeWallet,
   ThirdwebAuthConfig,
+  trustWallet,
   walletConnect,
+  zerionWallet,
 } from "@thirdweb-dev/react";
 import { DAppMetaData } from "@thirdweb-dev/wallets";
 
 import {
   generateUrl,
-  MAGIC_API_KEY,
   THIRDWEB_CLIENT_ID,
   WALLET_CONNECT_PROJECT_ID,
 } from "@/lib";
@@ -32,12 +37,21 @@ export const useProviderConfig = () => {
   };
 
   const supportedWallets = [
-    magicLink({ apiKey: MAGIC_API_KEY, type: "connect" }),
     metamaskWallet({ projectId }),
     walletConnect({ projectId }),
     coinbaseWallet(),
     rainbowWallet({ projectId }),
     safeWallet(),
+    localWallet(),
+    embeddedWallet({
+      auth: { options: ["email", "apple", "facebook", "google"] },
+    }),
+    trustWallet(),
+    zerionWallet(),
+    bloctoWallet(),
+    frameWallet(),
+    rainbowWallet(),
+    phantomWallet(),
   ];
 
   return {
