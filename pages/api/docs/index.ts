@@ -7,7 +7,7 @@ import { appRouter } from "@/server/routers/_app";
 export default async function handler(_: NextApiRequest, res: NextApiResponse) {
   res.status(200).send(
     renderTrpcPanel(appRouter, {
-      url: generateUrl(),
+      url: `${generateUrl()}/api/trpc`,
       transformer: "superjson",
     })
   );
