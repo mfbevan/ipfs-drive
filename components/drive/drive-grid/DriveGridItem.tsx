@@ -35,6 +35,9 @@ const GridItemContainer = chakra(Flex, {
     p: "10px",
     bg: "itemBg",
     cursor: "pointer",
+    _hover: {
+      bg: "itemOffsetBg",
+    },
   },
 });
 
