@@ -26,6 +26,7 @@ export const PageBreadcrumbs = ({
       );
     }
     return allPaths;
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only update when router changes
   }, [router]);
 
   return (

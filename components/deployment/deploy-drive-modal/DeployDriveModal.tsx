@@ -14,8 +14,6 @@ import { DeployDriveForm } from "./DeployDriveForm";
 import { BaseIconButton } from "@/components";
 import { useDriveDeploymentStore } from "@/lib";
 
-export const DEPLOY_DRIVE_MODAL_ID = "deploy_drive_modal";
-
 export interface DeployDriveModalProps {}
 
 export const DeployDriveModal = ({}: DeployDriveModalProps) => {
