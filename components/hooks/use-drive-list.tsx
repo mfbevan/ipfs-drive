@@ -18,8 +18,9 @@ export const useDriveList = () => {
     const cache = getCache();
     if (cache) {
       setCached(cache);
+    } else {
+      refetch();
     }
-    refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only run automatically on page load
   }, []);
 

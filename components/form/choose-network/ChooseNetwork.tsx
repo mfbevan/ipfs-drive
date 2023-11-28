@@ -9,14 +9,15 @@ import {
   MenuList,
   chakra,
 } from "@chakra-ui/react";
+import { Chain } from "@thirdweb-dev/chains";
 import { useChainId, useSwitchChain } from "@thirdweb-dev/react";
 import { toast } from "react-toastify";
 
 import { NetworkIcon } from "@/components";
-import { DeploymentNetwork, extractReadableError } from "@/lib";
+import { extractReadableError } from "@/lib";
 
 export interface ChooseNetworkProps {
-  networks: DeploymentNetwork[];
+  networks: Chain[];
 }
 
 export const ChooseNetwork = ({ networks }: ChooseNetworkProps) => {

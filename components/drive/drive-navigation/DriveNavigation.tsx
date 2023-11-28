@@ -50,7 +50,11 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
           onClick={refetch}
           label="Refetch Drives"
         />
-        <DriveSelect drives={drives} currentDrive={currentDrive} />
+        {isLoading ? (
+          <SelectSkeleton />
+        ) : (
+          <DriveSelect drives={drives} currentDrive={currentDrive} />
+        )}
         <DriveDivider orientation="vertical" />
       </Flex>
 
