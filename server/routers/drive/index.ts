@@ -26,7 +26,6 @@ export const driveService = router({
     .output(getDrivesForAddressResponse)
     .query(async ({ input }) => {
       const { address } = input;
-      console.log({ address, environmentDeploymentNetworks });
 
       const drives = (
         await Promise.all(
@@ -41,7 +40,10 @@ export const driveService = router({
                 provider
               );
 
-              if (!(await contract.deployed())) return [];
+              if (!(await contract.deployed())) {
+                console.log("No proxy found on ", network.name);
+                return [];
+              }
 
               const filter = contract.filters.ProxyDeployed(
                 null,
@@ -50,6 +52,8 @@ export const driveService = router({
               );
               const startBlock = indexingStartBlocks[network.chainId]; // Used to minimize query time
               const logs = await contract.queryFilter(filter, startBlock);
+
+              console.log({ logs: logs.length });
 
               const contractsWithMetadata = (
                 await Promise.all(
