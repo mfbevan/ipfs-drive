@@ -50,7 +50,6 @@ export const useProviderConfig = () => {
     zerionWallet(),
     bloctoWallet(),
     frameWallet(),
-    rainbowWallet(),
     phantomWallet(),
   ];
 

@@ -13,6 +13,7 @@ import {
   XmptClientProvider,
   theme,
   useProviderConfig as config,
+  ConnectModal,
 } from "@/components";
 import { trpc } from "@/utils/trpc";
 
@@ -24,6 +25,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => (
       <ThirdwebProvider {...providerConfig}>
         <XMTPProvider>
           <XmptClientProvider>
+            <ConnectModal />
             <ToastContainer theme="colored" position="bottom-right" />
             <PageLoader />
             <Component {...pageProps} />

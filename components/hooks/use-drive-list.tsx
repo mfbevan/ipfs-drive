@@ -1,4 +1,4 @@
-import { useSigner } from "@thirdweb-dev/react";
+import { useAddress, useSigner } from "@thirdweb-dev/react";
 import { useEffect, useState } from "react";
 
 import { useCache } from ".";
@@ -9,9 +9,11 @@ export const DRIVE_LIST_CACHE_KEY = "drive-list";
 
 export const useDriveList = () => {
   const signer = useSigner();
+  const address = useAddress();
   const [isLoading, setIsLoading] = useState(false);
-  const { getCache, setCache } =
-    useCache<GetDrivesForAddressResponse>(DRIVE_LIST_CACHE_KEY);
+  const { getCache, setCache } = useCache<GetDrivesForAddressResponse>(
+    `${DRIVE_LIST_CACHE_KEY}:${address ?? "unknown"}`
+  );
   const [cached, setCached] = useState<GetDrivesForAddressResponse>();
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export const useDriveList = () => {
       refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only run automatically on page load
-  }, []);
+  }, [address]);
 
   const refetch = async () => {
     if (!signer) return;

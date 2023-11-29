@@ -9,7 +9,7 @@ import {
 import { loadKeys, storeKeys } from "./xmpt.utils";
 
 import { useSessionUser } from "@/components";
-import { XmptKeyModal } from "@/components/wallet/XmptKeyModal";
+import { XmptKeyModal } from "@/components";
 import { XMPT_ENV } from "@/lib";
 
 const clientOptions: Partial<ClientOptions> = { env: XMPT_ENV };
