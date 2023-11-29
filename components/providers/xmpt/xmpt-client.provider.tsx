@@ -1,6 +1,6 @@
-import { useSigner } from "@thirdweb-dev/react";
+import { useAddress, useSigner } from "@thirdweb-dev/react";
 import { Client, ClientOptions } from "@xmtp/react-sdk";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   XmptClientContext,
@@ -22,6 +22,7 @@ export const XmptClientProvider = ({ children }: XmptClientProviderProps) => {
   const [client, setClient] = useState<Client | undefined>(undefined);
 
   const signer = useSigner();
+  const address = useAddress();
   const { isConnected } = useSessionUser();
 
   const connect = useCallback(async (): Promise<Client | undefined> => {
@@ -33,7 +34,7 @@ export const XmptClientProvider = ({ children }: XmptClientProviderProps) => {
       keys = await Client.getKeys(signer, {
         ...clientOptions,
         skipContactPublishing: true, // we don't need to publish the contact here since it will happen when we create the client later
-        persistConversations: false, // this isntance is short lived so we don't need to persist the conversations
+        persistConversations: false, // this instance is short lived so we don't need to persist the conversations
       });
       storeKeys(address, keys);
     }
@@ -45,6 +46,15 @@ export const XmptClientProvider = ({ children }: XmptClientProviderProps) => {
     setClient(client);
     return client;
   }, [signer, isConnected]);
+
+  useEffect(() => {
+    // Check if keys are available on page load to skip the modal process
+    if (signer && address && isConnected) {
+      if (loadKeys(address)) {
+        connect();
+      }
+    }
+  }, [signer, isConnected, address, connect]);
 
   const value: XmptClientContextValues = useMemo(
     () =>

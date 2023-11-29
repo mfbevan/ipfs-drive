@@ -1,12 +1,12 @@
 import { RepeatIcon } from "@chakra-ui/icons";
-import { Divider, Flex, Skeleton, chakra } from "@chakra-ui/react";
+import { Button, Divider, Flex, Skeleton, chakra } from "@chakra-ui/react";
 import { BsGridFill } from "react-icons/bs";
-import { FaThList } from "react-icons/fa";
+import { FaThList, FaUpload } from "react-icons/fa";
 
-import { DriveSelect } from "..";
+import { DriveSelect } from "../drive-select";
 
 import { BaseIconButton, FormInput, useDriveList } from "@/components";
-import { DeployDriveModal } from "@/components/deployment";
+import { DeployDriveModal } from "@/components/drive/deploy-drive-modal";
 import { useCurrentDrive } from "@/components/hooks/use-current-drive";
 import { BaseContainer } from "@/components/theme/variants";
 import { useDriveStore } from "@/lib/stores/drive-store";
@@ -59,7 +59,7 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
         <DriveDivider orientation="vertical" />
       </Flex>
 
-      <Flex flex={3} gap="10px">
+      <Flex flex={3} gap="10px" w="full">
         <FormInput
           value={search}
           // @ts-ignore -- value does exist on target
@@ -85,6 +85,11 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
           onClick={() => setFileDisplayMode("grid")}
           label="Grid View"
         />
+        <DriveDivider orientation="vertical" />
+      </Flex>
+
+      <Flex>
+        <Button rightIcon={<FaUpload />}>Upload</Button>
       </Flex>
     </NavigationContainer>
   );

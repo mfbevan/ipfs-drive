@@ -20,6 +20,7 @@ import {
 export const driveService = router({
   /**
    * Get all of the drives for an address
+   * @deprecated This has been deprecated since local fetching was setup
    */
   getDrivesForAddress: procedure
     .input(getDrivesForAddressRequest)
@@ -81,6 +82,7 @@ export const driveService = router({
 
   /**
    * Get all of the files for a drive
+   * @deprecated This will be deprecated after local fetching has been setup
    */
   getDriveFiles: procedure
     .input(getDriveFilesRequest)

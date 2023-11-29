@@ -18,7 +18,7 @@ export const XmptKeysButton = () => {
   return (
     <Menu>
       <Tooltip label="Xmpt Keys" aria-label="xmpt-keys">
-        <MenuButton>
+        <MenuButton as="div">
           <BaseIconButton
             colorScheme="accent"
             icon={<FaKey />}
