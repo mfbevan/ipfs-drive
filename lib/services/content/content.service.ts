@@ -3,7 +3,13 @@ import { Signer } from "ethers";
 
 import { ContentServiceInterface } from "./content.service.interface";
 
-import { DriveFileMetadata, WalletAddress, clientThirdWebSDK } from "@/lib";
+import {
+  DriveFile,
+  DriveFileMetadata,
+  THIRDWEB_CLIENT_ID,
+  WalletAddress,
+  clientThirdWebSDK,
+} from "@/lib";
 import {
   UploadFileRequest,
   UploadFileResponse,
@@ -55,5 +61,19 @@ export class ContentService implements ContentServiceInterface {
     const contract = await this.sdk.getContract(drive);
     const { id } = await contract.erc721.mint(metadataCid);
     return id.toNumber();
+  }
+
+  public async getFilesForDrive(
+    drive: string,
+    chainId: ChainIdOrNumber
+  ): Promise<DriveFile[]> {
+    const driveSdk = new ThirdwebSDK(chainId, {
+      clientId: THIRDWEB_CLIENT_ID,
+    });
+
+    const contract = await driveSdk.getContract(drive);
+    const files = await contract.erc721.getAll();
+
+    return files.map((file) => file.metadata as unknown as DriveFile);
   }
 }

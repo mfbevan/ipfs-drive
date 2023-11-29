@@ -1,4 +1,4 @@
-import { Tr, Td, chakra } from "@chakra-ui/react";
+import { Tr, Td, chakra, Skeleton } from "@chakra-ui/react";
 import { MediaRenderer } from "@thirdweb-dev/react";
 
 import { DriveFile, toDateTimeString, useDriveStore } from "@/lib";
@@ -24,11 +24,21 @@ export const DriveListItem = ({
       </StyledTd>
       <StyledTd>{name}</StyledTd>
       <StyledTd>{contentType}</StyledTd>
-      <StyledTd>{toDateTimeString(createdAt)}</StyledTd>
+      <StyledTd>{toDateTimeString(new Date(createdAt))}</StyledTd>
       <StyledTd>{isPublic ? "Public" : "Private"}</StyledTd>
     </StyledTr>
   );
 };
+
+export const DriveListItemSkeleton = () => (
+  <StyledTr>
+    {Array.from({ length: 5 }, (_, index) => (
+      <StyledTd key={index.toFixed()}>
+        <Skeleton h="40px" w="full" rounded="xl" />
+      </StyledTd>
+    ))}
+  </StyledTr>
+);
 
 const StyledTr = chakra(Tr, {
   baseStyle: {

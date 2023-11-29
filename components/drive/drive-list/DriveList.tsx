@@ -1,15 +1,16 @@
 import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 
-import { DriveListItem } from "./DriveListItem";
+import { DriveListItem, DriveListItemSkeleton } from "./DriveListItem";
 
 import { BaseContainer } from "@/components/theme/variants";
 import { DriveFile } from "@/lib";
 
 export interface DriveListProps {
   files: DriveFile[];
+  isLoading?: boolean;
 }
 
-export const DriveList = ({ files }: DriveListProps) => (
+export const DriveList = ({ files, isLoading }: DriveListProps) => (
   <BaseContainer>
     <TableContainer w="full">
       <Table variant="simple">
@@ -23,9 +24,13 @@ export const DriveList = ({ files }: DriveListProps) => (
           </Tr>
         </Thead>
         <Tbody>
-          {files.map((file, index) => (
-            <DriveListItem key={index.toFixed()} file={file} />
-          ))}
+          {isLoading ? (
+            <DriveListItemSkeleton />
+          ) : (
+            files.map((file, index) => (
+              <DriveListItem key={index.toFixed()} file={file} />
+            ))
+          )}
         </Tbody>
       </Table>
     </TableContainer>

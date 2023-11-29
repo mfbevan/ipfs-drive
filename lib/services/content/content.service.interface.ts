@@ -1,6 +1,6 @@
-import { WalletAddress } from "@thirdweb-dev/react";
+import { ChainIdOrNumber, WalletAddress } from "@thirdweb-dev/react";
 
-import { UploadFileRequest, UploadFileResponse } from "@/lib";
+import { DriveFile, UploadFileRequest, UploadFileResponse } from "@/lib";
 
 export interface ContentServiceInterface {
   /**
@@ -13,4 +13,14 @@ export interface ContentServiceInterface {
     request: UploadFileRequest,
     owner: WalletAddress
   ): Promise<UploadFileResponse>;
+
+  /**
+   * Retrieve all of the files for a drive
+   * @param drive The address of the drive contract
+   * @param chainId The chainId of the drive contract
+   */
+  getFilesForDrive(
+    drive: string,
+    chainId: ChainIdOrNumber
+  ): Promise<DriveFile[]>;
 }

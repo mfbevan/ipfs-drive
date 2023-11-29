@@ -42,6 +42,7 @@ const DisplayContainer = chakra(BaseContainer, {
     alignItems: "flex-start",
     gap: "5px",
     py: "20px",
+    px: "0px",
   },
 });
 

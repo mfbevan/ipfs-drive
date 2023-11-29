@@ -50,17 +50,19 @@ export const FileDrawer = ({}: FileDrawerProps) => {
                 name: selectedFile?.metadata.name,
                 cid: shortenString(cid),
                 contentType: selectedFile?.metadata.contentType,
-                visibility: selectedFile?.metadata.encrypted
-                  ? "Public"
-                  : "Private",
-                createdAt: toDateTimeString(selectedFile?.metadata.createdAt),
+                encrypted: selectedFile?.metadata.encrypted
+                  ? "Encrypted"
+                  : "Public",
+                createdAt: toDateTimeString(
+                  new Date(selectedFile?.metadata.createdAt ?? "")
+                ),
               }}
               labels={{
                 drive: "Drive",
                 name: "Name",
                 cid: "Content ID",
                 contentType: "Content Type",
-                visibility: "Visibility",
+                encrypted: "Visibility",
                 createdAt: "Created At",
               }}
             />
