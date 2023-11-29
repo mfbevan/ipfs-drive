@@ -8,6 +8,7 @@ import { DriveSelect } from "..";
 import { BaseIconButton, FormInput, useDriveList } from "@/components";
 import { DeployDriveModal } from "@/components/deployment";
 import { useCurrentDrive } from "@/components/hooks/use-current-drive";
+import { BaseContainer } from "@/components/theme/variants";
 import { useDriveStore } from "@/lib/stores/drive-store";
 
 export interface DriveNavigationProps {}
@@ -89,17 +90,9 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
   );
 };
 
-const NavigationContainer = chakra(Flex, {
+const NavigationContainer = chakra(BaseContainer, {
   baseStyle: {
-    position: "relative",
-    boxShadow: "base",
     w: "full",
-    border: "1px solid",
-    borderColor: "border",
-    rounded: "xl",
-    p: "10px",
-    bg: "itemBg",
-    gap: "10px",
     flexDirection: {
       base: "column",
       md: "row",

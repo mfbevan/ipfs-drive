@@ -19,19 +19,19 @@ import { trpc } from "@/utils/trpc";
 const providerConfig = config();
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
-  <FeatureProvider>
-    <ThirdwebProvider {...providerConfig}>
-      <XMTPProvider>
-        <XmptClientProvider>
-          <ChakraProvider theme={theme}>
+  <ChakraProvider theme={theme}>
+    <FeatureProvider>
+      <ThirdwebProvider {...providerConfig}>
+        <XMTPProvider>
+          <XmptClientProvider>
             <ToastContainer theme="colored" position="bottom-right" />
             <PageLoader />
             <Component {...pageProps} />
-          </ChakraProvider>
-        </XmptClientProvider>
-      </XMTPProvider>
-    </ThirdwebProvider>
-  </FeatureProvider>
+          </XmptClientProvider>
+        </XMTPProvider>
+      </ThirdwebProvider>
+    </FeatureProvider>
+  </ChakraProvider>
 );
 
 export default trpc.withTRPC(App);

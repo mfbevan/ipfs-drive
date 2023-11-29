@@ -3,6 +3,7 @@ import { CachedConversation, Conversation } from "@xmtp/react-sdk";
 import Link from "next/link";
 
 import { Avatar } from "@/components";
+import { BaseContainerHover } from "@/components/theme/variants/Containers";
 import { shortenString, toDateTimeString } from "@/lib";
 
 export interface ConversationListItemProps {
@@ -23,19 +24,10 @@ export const ConversationListItem = ({
   </Link>
 );
 
-const CardContainer = chakra(Flex, {
+const CardContainer = chakra(BaseContainerHover, {
   baseStyle: {
-    position: "relative",
-    boxShadow: "base",
-    w: "full",
-    rounded: "xl",
-    p: "10px",
-    overflow: "hidden",
-    bg: "itemBg",
+    justifyContent: "flex-start",
     gap: "10px",
-    _hover: {
-      bg: "itemOffsetBg",
-    },
   },
 });
 

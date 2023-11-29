@@ -37,7 +37,7 @@ export const FileDrawer = ({}: FileDrawerProps) => {
   return (
     <Drawer isOpen={isOpen} placement="right" size="xs" onClose={onClose}>
       <DrawerOverlay />
-      <DrawerContent>
+      <DrawerContent roundedLeft="xl">
         <DrawerCloseButton />
         <DrawerHeader>{selectedFile?.metadata.name}</DrawerHeader>
 

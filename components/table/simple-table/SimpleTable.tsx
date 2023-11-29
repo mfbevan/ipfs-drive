@@ -1,5 +1,4 @@
 import {
-  Flex,
   chakra,
   Table,
   TableContainer,
@@ -10,6 +9,8 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
+
+import { BaseContainer } from "@/components/theme/variants";
 
 export type SimpleTableValue = string | number | ReactNode;
 export type SimpleTableData = Record<string, SimpleTableValue>;
@@ -47,13 +48,10 @@ export const SimpleTable = <T extends SimpleTableData>({
   </DisplayContainer>
 );
 
-const DisplayContainer = chakra(Flex, {
+const DisplayContainer = chakra(BaseContainer, {
   baseStyle: {
     flexDirection: "column",
-    bg: "itemBg",
-    border: "1px solid",
-    borderColor: "border",
-    rounded: "xl",
     gap: "5px",
+    py: "20px",
   },
 });

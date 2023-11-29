@@ -1,6 +1,7 @@
-import { Flex, Text, chakra } from "@chakra-ui/react";
+import { Text, chakra } from "@chakra-ui/react";
 import { MediaRenderer } from "@thirdweb-dev/react";
 
+import { BaseContainerHover } from "@/components/theme/variants/Containers";
 import { DriveFile, useDriveStore } from "@/lib";
 
 export interface DriveGridItemProps {
@@ -22,22 +23,9 @@ export const DriveGridItem = ({
   );
 };
 
-const GridItemContainer = chakra(Flex, {
+const GridItemContainer = chakra(BaseContainerHover, {
   baseStyle: {
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    rounded: "xl",
-    boxShadow: "base",
-    border: "1px solid",
-    borderColor: "border",
-    p: "10px",
-    bg: "itemBg",
-    cursor: "pointer",
-    _hover: {
-      bg: "itemOffsetBg",
-    },
   },
 });
 

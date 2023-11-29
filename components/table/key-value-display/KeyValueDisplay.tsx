@@ -2,6 +2,8 @@
 import { Text, Flex, chakra, TextProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
+import { BaseContainer } from "@/components/theme/variants/Containers";
+
 export type DisplayValue = string | number | ReactNode;
 
 export interface KeyValueDisplayProps {
@@ -34,13 +36,9 @@ export const KeyValueDisplay = ({
   </DisplayContainer>
 );
 
-const DisplayContainer = chakra(Flex, {
+const DisplayContainer = chakra(BaseContainer, {
   baseStyle: {
     flexDirection: "column",
-    bg: "itemBg",
-    border: "1px solid",
-    borderColor: "border",
-    rounded: "xl",
     gap: "5px",
     py: "20px",
   },

@@ -1,16 +1,8 @@
-import {
-  Flex,
-  Table,
-  TableContainer,
-  Tbody,
-  Th,
-  Thead,
-  Tr,
-  chakra,
-} from "@chakra-ui/react";
+import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 
 import { DriveListItem } from "./DriveListItem";
 
+import { BaseContainer } from "@/components/theme/variants";
 import { DriveFile } from "@/lib";
 
 export interface DriveListProps {
@@ -18,7 +10,7 @@ export interface DriveListProps {
 }
 
 export const DriveList = ({ files }: DriveListProps) => (
-  <ListContainer>
+  <BaseContainer>
     <TableContainer w="full">
       <Table variant="simple">
         <Thead>
@@ -37,17 +29,5 @@ export const DriveList = ({ files }: DriveListProps) => (
         </Tbody>
       </Table>
     </TableContainer>
-  </ListContainer>
+  </BaseContainer>
 );
-
-const ListContainer = chakra(Flex, {
-  baseStyle: {
-    boxShadow: "base",
-    w: "full",
-    border: "1px solid",
-    borderColor: "border",
-    rounded: "xl",
-    py: "10px",
-    bg: "itemBg",
-  },
-});
