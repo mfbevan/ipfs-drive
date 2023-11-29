@@ -43,5 +43,5 @@ export const BaseIconButton = ({
 };
 
 export const ActionIconButton = (props: BaseIconButtonProps) => (
-  <BaseIconButton {...props} size="xs" boxSize="30px" rounded="xl" />
+  <BaseIconButton size="xs" boxSize="30px" rounded="xl" {...props} />
 );

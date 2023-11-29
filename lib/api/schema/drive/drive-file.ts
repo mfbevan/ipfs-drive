@@ -16,6 +16,7 @@ export type DriveFileMetadata = z.infer<typeof driveFileMetadata>;
 export const driveFileSchema = z.object({
   content: z.string(),
   metadata: driveFileMetadata,
+  uri: z.string().optional(), // This is automatically returned by the API
 });
 
 export type DriveFile = z.infer<typeof driveFileSchema>;

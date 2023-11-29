@@ -34,6 +34,8 @@ const DrivePage: NextPage = () => {
     list: <DriveList files={files} isLoading={isLoading} />,
   };
 
+  console.log({ files });
+
   return (
     <AppLayout
       title="Nexeth - Drive"
