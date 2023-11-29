@@ -5,14 +5,11 @@ import {
   LightMode,
   Menu,
   MenuButton,
-  MenuItem,
-  MenuList,
   Tooltip,
-  chakra,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-import { NetworkIcon } from "@/components";
+import { NetworkIcon, StyledMenuItem, StyledMenuList } from "@/components";
 import { Drive } from "@/lib";
 
 export interface DriveSelectProps {
@@ -40,7 +37,6 @@ export const DriveSelect = ({ drives, currentDrive }: DriveSelectProps) => {
             <MenuButton
               as={Button}
               rightIcon={<ChevronDownIcon />}
-              // variant="standard"
               colorScheme="accent"
             >
               <Flex alignItems="center" w="100%" justifyContent="space-between">
@@ -70,24 +66,3 @@ export const DriveSelect = ({ drives, currentDrive }: DriveSelectProps) => {
     </Flex>
   );
 };
-
-const StyledMenuList = chakra(MenuList, {
-  baseStyle: {
-    rounded: "xl",
-    p: "5px",
-    gap: "2px",
-    bg: "itemBg",
-  },
-});
-
-const StyledMenuItem = chakra(MenuItem, {
-  baseStyle: {
-    rounded: "xl",
-    fontSize: "sm",
-    _hover: {
-      boxShadow: "inner",
-      bg: "itemOffsetBg",
-    },
-    bg: "transparent",
-  },
-});

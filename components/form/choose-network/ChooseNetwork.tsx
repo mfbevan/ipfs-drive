@@ -5,15 +5,13 @@ import {
   FormLabel,
   Menu,
   MenuButton,
-  MenuItem,
-  MenuList,
   chakra,
 } from "@chakra-ui/react";
 import { Chain } from "@thirdweb-dev/chains";
 import { useChainId, useSwitchChain } from "@thirdweb-dev/react";
 import { toast } from "react-toastify";
 
-import { NetworkIcon } from "@/components";
+import { NetworkIcon, StyledMenuItem, StyledMenuList } from "@/components";
 import { extractReadableError } from "@/lib";
 
 export interface ChooseNetworkProps {
@@ -71,26 +69,5 @@ const StyledFormLabel = chakra(FormLabel, {
     fontSize: "0.7rem",
     mb: "4px",
     ml: "2px",
-  },
-});
-
-const StyledMenuList = chakra(MenuList, {
-  baseStyle: {
-    rounded: "xl",
-    p: "5px",
-    gap: "2px",
-    bg: "itemBg",
-  },
-});
-
-const StyledMenuItem = chakra(MenuItem, {
-  baseStyle: {
-    rounded: "xl",
-    fontSize: "sm",
-    _hover: {
-      boxShadow: "inner",
-      bg: "itemOffsetBg",
-    },
-    bg: "transparent",
   },
 });

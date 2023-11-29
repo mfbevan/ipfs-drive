@@ -6,3 +6,5 @@ export * from "./Select";
 export * from "./Button";
 export * from "./IconButton";
 export * from "./Tooltip";
+export * from "./Modal";
+export * from "./Menu";

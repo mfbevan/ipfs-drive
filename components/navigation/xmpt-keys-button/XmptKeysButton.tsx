@@ -1,15 +1,13 @@
-import {
-  chakra,
-  MenuList,
-  MenuItem,
-  Menu,
-  MenuButton,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, Tooltip } from "@chakra-ui/react";
 import { useContext } from "react";
 import { FaKey } from "react-icons/fa";
 
-import { BaseIconButton, XmptClientContext } from "@/components";
+import {
+  BaseIconButton,
+  StyledMenuItem,
+  StyledMenuList,
+  XmptClientContext,
+} from "@/components";
 import { XMPT_ENV, shortenString } from "@/lib";
 
 export const XmptKeysButton = () => {
@@ -45,24 +43,3 @@ export const XmptKeysButton = () => {
     </Menu>
   );
 };
-
-const StyledMenuList = chakra(MenuList, {
-  baseStyle: {
-    rounded: "xl",
-    p: "5px",
-    gap: "2px",
-    bg: "itemBg",
-  },
-});
-
-const StyledMenuItem = chakra(MenuItem, {
-  baseStyle: {
-    rounded: "xl",
-    fontSize: "sm",
-    _hover: {
-      boxShadow: "inner",
-      bg: "itemOffsetBg",
-    },
-    bg: "transparent",
-  },
-});

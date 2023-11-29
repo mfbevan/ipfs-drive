@@ -1,17 +1,15 @@
-import {
-  chakra,
-  Modal,
-  ModalContent,
-  ModalBody,
-  ModalOverlay,
-  ModalHeader,
-  ModalCloseButton,
-} from "@chakra-ui/react";
+import { ModalHeader, ModalCloseButton } from "@chakra-ui/react";
 import { BsDatabaseAdd } from "react-icons/bs";
 
 import { DeployDriveForm } from "./DeployDriveForm";
 
-import { BaseIconButton } from "@/components";
+import {
+  BaseIconButton,
+  StyledModal,
+  StyledModalBody,
+  StyledModalContent,
+  StyledModalOverlay,
+} from "@/components";
 import { useDriveDeploymentStore } from "@/lib";
 
 export interface DeployDriveModalProps {}
@@ -31,7 +29,7 @@ export const DeployDriveModal = ({}: DeployDriveModalProps) => {
 
       <StyledModal isOpen={isOpen} onClose={onClose} size="sm" isCentered>
         <StyledModal isOpen={isOpen} onClose={onClose} size="sm" isCentered>
-          <ModalOverlay bg="modalOverlayBg" backdropFilter="blur(5px)" />
+          <StyledModalOverlay />
           <StyledModalContent>
             <ModalHeader>
               New Drive
@@ -47,23 +45,3 @@ export const DeployDriveModal = ({}: DeployDriveModalProps) => {
     </>
   );
 };
-
-const StyledModal = chakra(Modal, {
-  baseStyle: {},
-});
-
-const StyledModalContent = chakra(ModalContent, {
-  baseStyle: {
-    w: "full",
-    border: "1px solid",
-    borderColor: "border",
-    bg: "itemBg",
-    rounded: "2xl",
-  },
-});
-
-const StyledModalBody = chakra(ModalBody, {
-  baseStyle: {
-    alignItems: "center",
-  },
-});
