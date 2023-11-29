@@ -6,12 +6,12 @@ export interface ContentServiceInterface {
   /**
    * Upload a file to the content service and return the CID
    * @param request The request to upload a file
-   * @param owner The owner of the file
+   * @param creator The creator of the file
    * @returns The CID of the metadata file
    */
   uploadFile(
     request: UploadFileRequest,
-    owner: WalletAddress
+    creator: WalletAddress
   ): Promise<UploadFileResponse>;
 
   /**

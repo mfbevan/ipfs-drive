@@ -15,7 +15,6 @@ import { MediaRenderer } from "@thirdweb-dev/react";
 import Link from "next/link";
 
 import {
-  BaseIconButton,
   CopyItem,
   KeyValueDisplay,
   useCurrentDrive,

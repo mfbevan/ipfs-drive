@@ -30,7 +30,7 @@ export class ContentService implements ContentServiceInterface {
 
   async uploadFile(
     { files, name, description, encrypted, drive, chainId }: UploadFileRequest,
-    owner: WalletAddress
+    creator: WalletAddress
   ): Promise<UploadFileResponse> {
     const file = files[0];
 
@@ -44,7 +44,7 @@ export class ContentService implements ContentServiceInterface {
         drive,
         createdAt: new Date().getTime(),
         encrypted: Boolean(encrypted),
-        owner,
+        creator,
       } satisfies DriveFileMetadata,
     };
 

@@ -6,7 +6,7 @@ export const driveFileMetadata = z.object({
   createdAt: z.number(),
   contentType: z.string(),
   encrypted: z.boolean().optional(),
-  owner: z.string(),
+  creator: z.string(),
   drive: z.string(),
   chainId: z.number(),
 });
