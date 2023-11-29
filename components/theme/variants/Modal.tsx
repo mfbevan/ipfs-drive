@@ -5,10 +5,17 @@ import {
   ModalBody,
   ModalOverlayProps,
   ModalOverlay,
+  ModalHeader,
 } from "@chakra-ui/react";
 
 export const StyledModal = chakra(Modal, {
   baseStyle: {},
+});
+
+export const StyledModalHeader = chakra(ModalHeader, {
+  baseStyle: {
+    mx: "auto",
+  },
 });
 
 export const StyledModalContent = chakra(ModalContent, {

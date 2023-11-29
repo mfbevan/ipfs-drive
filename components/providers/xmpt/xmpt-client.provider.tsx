@@ -1,10 +1,15 @@
 import { useSigner } from "@thirdweb-dev/react";
 import { Client, ClientOptions } from "@xmtp/react-sdk";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
-import { XmptClientContext } from "./xmpt-client.context";
+import {
+  XmptClientContext,
+  XmptClientContextValues,
+} from "./xmpt-client.context";
 import { loadKeys, storeKeys } from "./xmpt.utils";
 
+import { useSessionUser } from "@/components";
+import { XmptKeyModal } from "@/components/wallet/XmptKeyModal";
 import { XMPT_ENV } from "@/lib";
 
 const clientOptions: Partial<ClientOptions> = { env: XMPT_ENV };
@@ -17,9 +22,10 @@ export const XmptClientProvider = ({ children }: XmptClientProviderProps) => {
   const [client, setClient] = useState<Client | undefined>(undefined);
 
   const signer = useSigner();
+  const { isConnected } = useSessionUser();
 
   const connect = useCallback(async (): Promise<Client | undefined> => {
-    if (!signer) return undefined;
+    if (!signer || !isConnected) return undefined;
     const address = await signer.getAddress();
     let keys = loadKeys(address);
 
@@ -32,18 +38,28 @@ export const XmptClientProvider = ({ children }: XmptClientProviderProps) => {
       storeKeys(address, keys);
     }
 
-    return Client.create(null, { ...clientOptions, privateKeyOverride: keys });
-  }, [signer]);
+    const client = await Client.create(null, {
+      ...clientOptions,
+      privateKeyOverride: keys,
+    });
+    setClient(client);
+    return client;
+  }, [signer, isConnected]);
 
-  useEffect(() => {
-    if (!signer) return;
-    connect().then(setClient);
-  }, [connect, signer]);
-
-  const value = useMemo(() => ({ client }), [client]);
+  const value: XmptClientContextValues = useMemo(
+    () =>
+      ({
+        client,
+        publicKey: client?.address,
+        connect,
+        isModalOpen: isConnected && !client,
+      } satisfies XmptClientContextValues),
+    [client, connect, isConnected]
+  );
 
   return (
     <XmptClientContext.Provider value={value}>
+      <XmptKeyModal isOpen={value.isModalOpen} connect={connect} />
       {children}
     </XmptClientContext.Provider>
   );

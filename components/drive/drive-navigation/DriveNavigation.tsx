@@ -92,6 +92,9 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
 
 const NavigationContainer = chakra(BaseContainer, {
   baseStyle: {
+    position: "relative",
+    alignItems: "flex-start",
+    gap: "10px",
     w: "full",
     flexDirection: {
       base: "column",
