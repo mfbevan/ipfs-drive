@@ -1,25 +1,59 @@
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { ChainIdOrNumber, ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { Signer } from "ethers";
 
-import { UploadRequest, UploadResponse } from "./content.dto";
 import { ContentServiceInterface } from "./content.service.interface";
 
-import { WalletAddress, serverThirdWebSDK } from "@/lib";
+import { DriveFileMetadata, WalletAddress, clientThirdWebSDK } from "@/lib";
+import {
+  UploadFileRequest,
+  UploadFileResponse,
+} from "@/lib/types/forms/upload-file";
 
 export class ContentService implements ContentServiceInterface {
+  private signer: Signer;
+
+  private sdk: ThirdwebSDK;
+
   private storage: ThirdwebSDK["storage"];
 
-  constructor() {
-    const sdk = serverThirdWebSDK();
-    this.storage = sdk.storage;
+  constructor(signer: Signer, network?: ChainIdOrNumber) {
+    this.signer = signer;
+    this.sdk = clientThirdWebSDK(this.signer, network);
+    this.storage = this.sdk.storage;
   }
 
-  async upload(
-    { file, encrypted }: UploadRequest,
+  async uploadFile(
+    { files, name, description, encrypted, drive, chainId }: UploadFileRequest,
     owner: WalletAddress
-  ): Promise<UploadResponse> {
-    Promise.resolve({ encrypted, owner }); // TODO address this when encryption is available
-    const cid = await this.storage.upload(file);
+  ): Promise<UploadFileResponse> {
+    const file = files[0];
 
-    return { cid };
+    const driveFile = {
+      content: file,
+      metadata: {
+        name,
+        description,
+        contentType: file.type,
+        chainId,
+        drive,
+        createdAt: new Date().getTime(),
+        encrypted: Boolean(encrypted),
+        owner,
+      } satisfies DriveFileMetadata,
+    };
+
+    const metadataCid: string = await this.storage.upload(driveFile);
+    const tokenId = await this.mintFile(metadataCid, drive);
+
+    return {
+      metadataCid,
+      tokenId,
+    };
+  }
+
+  private async mintFile(metadataCid: string, drive: string): Promise<number> {
+    const contract = await this.sdk.getContract(drive);
+    const { id } = await contract.erc721.mint(metadataCid);
+    return id.toNumber();
   }
 }

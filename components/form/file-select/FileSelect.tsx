@@ -88,7 +88,8 @@ export const FileSelect = ({
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               bg="inputArea"
-              border={drag ? "1px dashed" : "none"}
+              border={drag ? "1px dashed" : "1px solid"}
+              borderColor={drag ? "accent.300" : "border"}
             >
               <ButtonContainer>
                 <StyledLabel>Drag & Drop</StyledLabel>
@@ -138,9 +139,7 @@ const UploadBoundary = chakra(FormLabel, {
     textAlign: "center",
     w: "full",
     p: "20px",
-    bg: "containerBg",
     boxShadow: "inner",
-    borderColor: "cardOutline",
   },
 });
 

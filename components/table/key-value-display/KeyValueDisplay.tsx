@@ -39,6 +39,7 @@ export const KeyValueDisplay = ({
 const DisplayContainer = chakra(BaseContainer, {
   baseStyle: {
     flexDirection: "column",
+    alignItems: "flex-start",
     gap: "5px",
     py: "20px",
   },

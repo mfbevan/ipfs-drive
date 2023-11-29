@@ -1,11 +1,16 @@
 import { RepeatIcon } from "@chakra-ui/icons";
-import { Button, Divider, Flex, Skeleton, chakra } from "@chakra-ui/react";
+import { Divider, Flex, Skeleton, chakra } from "@chakra-ui/react";
 import { BsGridFill } from "react-icons/bs";
-import { FaThList, FaUpload } from "react-icons/fa";
+import { FaThList } from "react-icons/fa";
 
 import { DriveSelect } from "../drive-select";
 
-import { BaseIconButton, FormInput, useDriveList } from "@/components";
+import {
+  BaseIconButton,
+  FormInput,
+  UploadFileModal,
+  useDriveList,
+} from "@/components";
 import { DeployDriveModal } from "@/components/drive/deploy-drive-modal";
 import { useCurrentDrive } from "@/components/hooks/use-current-drive";
 import { BaseContainer } from "@/components/theme/variants";
@@ -16,7 +21,7 @@ export interface DriveNavigationProps {}
 export const DriveNavigation = ({}: DriveNavigationProps) => {
   const { fileDisplayMode, setFileDisplayMode, search, setSearch } =
     useDriveStore();
-  const { currentDrive } = useCurrentDrive();
+  const { currentDrive, chainId } = useCurrentDrive();
   const { drives, isLoading, isFetching, isFetched, refetch } = useDriveList();
 
   if (!isFetched && isFetching) {
@@ -89,7 +94,9 @@ export const DriveNavigation = ({}: DriveNavigationProps) => {
       </Flex>
 
       <Flex>
-        <Button rightIcon={<FaUpload />}>Upload</Button>
+        {currentDrive && (
+          <UploadFileModal drive={currentDrive} chainId={chainId} />
+        )}
       </Flex>
     </NavigationContainer>
   );

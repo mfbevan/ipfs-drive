@@ -7,17 +7,18 @@ export const useCurrentDrive = () => {
   const switchChain = useSwitchChain();
   const currentChainId = useChainId();
 
-  const { network: chainId, address: currentDrive } = useQueryParams([
+  const { network, address: currentDrive } = useQueryParams([
     "network",
     "address",
   ]);
+  const chainId = Number(network);
 
   const isDrive = path.includes("/drive") && chainId && currentDrive;
-  const isNetworkMismatch = Number(chainId) !== currentChainId;
+  const isNetworkMismatch = chainId !== currentChainId;
 
   const switchToChain = async () => {
     if (isNetworkMismatch) {
-      await switchChain(Number(chainId));
+      await switchChain(chainId);
     }
   };
 

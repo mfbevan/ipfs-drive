@@ -22,6 +22,6 @@ export const semanticTokens = {
     inverseItemOffsetBg: { default: "gray.800", _dark: "gray.50" },
     border: { default: "gray.100", _dark: "gray.800" },
     borderHighlight: { default: "accent.300", _dark: "accent.300" },
-    inputArea: { default: "white", _dark: "black" },
+    inputArea: { default: "white", _dark: "#191919" },
   },
 };

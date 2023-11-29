@@ -10,7 +10,7 @@ export interface DriveListItemProps {
 export const DriveListItem = ({
   file: {
     content,
-    metadata: { name, contentType, createdAt, isPublic },
+    metadata: { name, contentType, createdAt, encrypted: isPublic },
   },
   file,
 }: DriveListItemProps) => {

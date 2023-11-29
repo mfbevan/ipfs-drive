@@ -1,2 +1,2 @@
 export * from "./modal";
-export * from "./forms";
+export * from "../../lib/types/forms";

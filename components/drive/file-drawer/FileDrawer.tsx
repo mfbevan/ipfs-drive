@@ -50,7 +50,7 @@ export const FileDrawer = ({}: FileDrawerProps) => {
                 name: selectedFile?.metadata.name,
                 cid: shortenString(cid),
                 contentType: selectedFile?.metadata.contentType,
-                visibility: selectedFile?.metadata.isPublic
+                visibility: selectedFile?.metadata.encrypted
                   ? "Public"
                   : "Private",
                 createdAt: toDateTimeString(selectedFile?.metadata.createdAt),

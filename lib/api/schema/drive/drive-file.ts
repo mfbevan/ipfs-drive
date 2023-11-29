@@ -3,9 +3,12 @@ import { z } from "zod";
 export const driveFileMetadata = z.object({
   name: z.string(),
   description: z.string().optional(),
-  createdAt: z.date(),
+  createdAt: z.number(),
   contentType: z.string(),
-  isPublic: z.boolean().optional(),
+  encrypted: z.boolean().optional(),
+  owner: z.string(),
+  drive: z.string(),
+  chainId: z.number(),
 });
 
 export type DriveFileMetadata = z.infer<typeof driveFileMetadata>;
