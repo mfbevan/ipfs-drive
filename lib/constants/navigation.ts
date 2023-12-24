@@ -12,8 +12,8 @@ export const navigationItems: NavigationItem[] = [
     label: "💾 Drive",
     href: "/drive",
   },
-  {
-    label: "💬 Messages",
-    href: "/messages",
-  },
+  // {
+  //   label: "💬 Messages",
+  //   href: "/messages",
+  // },
 ];
