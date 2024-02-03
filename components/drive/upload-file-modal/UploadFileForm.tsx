@@ -1,5 +1,6 @@
 import { Button, Flex, ModalFooter, chakra } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useSigner, useSwitchChain } from "@thirdweb-dev/react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -14,9 +15,14 @@ import {
 export interface UploadFileFormProps {
   drive: string;
   chainId: number;
+  queryClient: QueryClient;
 }
 
-export const UploadFileForm = ({ drive, chainId }: UploadFileFormProps) => {
+export const UploadFileForm = ({
+  drive,
+  chainId,
+  queryClient,
+}: UploadFileFormProps) => {
   const { onClose } = useUploadFileStore();
   const signer = useSigner();
   const switchChain = useSwitchChain();
@@ -39,6 +45,7 @@ export const UploadFileForm = ({ drive, chainId }: UploadFileFormProps) => {
       await contentService.uploadFile({ ...data, files }, address);
 
       toast.success("File Uploaded");
+      queryClient.invalidateQueries();
     } catch (error: any) {
       toast.error(error.message);
     }

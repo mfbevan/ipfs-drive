@@ -10,7 +10,7 @@ export interface DriveListItemProps {
 export const DriveListItem = ({
   file: {
     content,
-    metadata: { name, contentType, createdAt, encrypted: isPublic },
+    metadata: { name, contentType, createdAt, encrypted },
   },
   file,
 }: DriveListItemProps) => {
@@ -25,7 +25,7 @@ export const DriveListItem = ({
       <StyledTd>{name}</StyledTd>
       <StyledTd>{contentType}</StyledTd>
       <StyledTd>{toDateTimeString(new Date(createdAt))}</StyledTd>
-      <StyledTd>{isPublic ? "Public" : "Private"}</StyledTd>
+      <StyledTd>{encrypted ? "Private" : "Public"}</StyledTd>
     </StyledTr>
   );
 };

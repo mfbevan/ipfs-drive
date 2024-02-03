@@ -1,4 +1,5 @@
 import { Button, ModalHeader, ModalCloseButton } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { FaUpload } from "react-icons/fa";
 
 import { UploadFileForm } from "./UploadFileForm";
@@ -20,6 +21,7 @@ export interface UploadFileModal {
 
 export const UploadFileModal = ({ icon, drive, chainId }: UploadFileModal) => {
   const { isOpen, onClose, onOpen } = useUploadFileStore();
+  const queryClient = useQueryClient();
 
   return (
     <>
@@ -47,7 +49,11 @@ export const UploadFileModal = ({ icon, drive, chainId }: UploadFileModal) => {
             </ModalHeader>
 
             <StyledModalBody>
-              <UploadFileForm drive={drive} chainId={chainId} />
+              <UploadFileForm
+                drive={drive}
+                chainId={chainId}
+                queryClient={queryClient}
+              />
             </StyledModalBody>
           </StyledModalContent>
         </StyledModal>
