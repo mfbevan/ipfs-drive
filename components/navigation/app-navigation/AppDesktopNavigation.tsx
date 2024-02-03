@@ -1,4 +1,12 @@
-import { Box, chakra, Flex, Spacer, Text } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Flex,
+  Spacer,
+  Tag,
+  Text,
+  Tooltip,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -31,14 +39,22 @@ export const AppDesktopNavigation = ({
 
   return (
     <>
-      <Link href="/">
-        <Image
-          src={nexethLogoTransparent}
-          alt="nexeth-logo"
-          height="40"
-          width="40"
-        />
-      </Link>
+      <Flex flexDirection="row">
+        <Link href="/">
+          <Image
+            src={nexethLogoTransparent}
+            alt="nexeth-logo"
+            height="40"
+            width="40"
+          />
+        </Link>
+        <Tooltip label="Only available on test networks">
+          <Tag size="sm" variant="subtle" colorScheme="accent" h="fit-content">
+            BETA
+          </Tag>
+        </Tooltip>
+      </Flex>
+
       {navigationItemsToShow?.map((item) => {
         const selected =
           item.href && item.href !== "/"
