@@ -1,5 +1,5 @@
 import { useAddress, useSigner } from "@thirdweb-dev/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useCache } from ".";
 
@@ -38,7 +38,10 @@ export const useDriveList = () => {
     setIsLoading(false);
   };
 
-  const drives: Drive[] = cached ? cached.drives : [];
+  const drives: Drive[] = useMemo(
+    () => (cached ? cached.drives : []),
+    [cached]
+  );
   const isFetching = isLoading && !cached;
   const isFetched = !isLoading && !!cached;
 

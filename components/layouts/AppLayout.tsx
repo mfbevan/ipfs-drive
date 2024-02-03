@@ -44,5 +44,6 @@ const AppContainer = chakra(Flex, {
     px: "20px",
     gap: "20px",
     pb: "80px",
+    minH: "80vh",
   },
 });

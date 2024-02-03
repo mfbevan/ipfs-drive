@@ -1,6 +1,6 @@
 import { Button, Flex, ModalFooter, chakra } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { useSigner, useSwitchChain } from "@thirdweb-dev/react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
